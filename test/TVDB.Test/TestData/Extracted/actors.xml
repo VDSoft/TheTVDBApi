@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Actors>
+<Actor>
+  <id>79415</id>
+  <Image>actors/79415.jpg</Image>
+  <Name>Nathan Fillion</Name>
+  <Role>Richard Castle</Role>
+  <SortOrder>0</SortOrder>
+</Actor>
+<Actor>
+  <id>79417</id>
+  <Image>actors/79417.jpg</Image>
+  <Name>Stana Katic</Name>
+  <Role>Detective Kate Beckett</Role>
+  <SortOrder>1</SortOrder>
+</Actor>
+<Actor>
+  <id>79413</id>
+  <Image>actors/79413.jpg</Image>
+  <Name>Molly C. Quinn</Name>
+  <Role>Alexis Castle</Role>
+  <SortOrder>2</SortOrder>
+</Actor>
+<Actor>
+  <id>82270</id>
+  <Image>actors/82270.jpg</Image>
+  <Name>Jon Huertas</Name>
+  <Role>Javier Esposito</Role>
+  <SortOrder>3</SortOrder>
+</Actor>
+<Actor>
+  <id>82269</id>
+  <Image>actors/82269.jpg</Image>
+  <Name>Seamus Dever</Name>
+  <Role>Kevin Ryan</Role>
+  <SortOrder>3</SortOrder>
+</Actor>
+<Actor>
+  <id>82268</id>
+  <Image>actors/82268.jpg</Image>
+  <Name>Tamala Jones</Name>
+  <Role>Lanie Parish</Role>
+  <SortOrder>3</SortOrder>
+</Actor>
+<Actor>
+  <id>79418</id>
+  <Image>actors/79418.jpg</Image>
+  <Name>Susan Sullivan</Name>
+  <Role>Martha Rodgers</Role>
+  <SortOrder>3</SortOrder>
+</Actor>
+<Actor>
+  <id>79416</id>
+  <Image>actors/79416.jpg</Image>
+  <Name>Ruben Santiago-Hudson</Name>
+  <Role>Captain Montgomery</Role>
+  <SortOrder>3</SortOrder>
+</Actor>
+<Actor>
+  <id>237741</id>
+  <Image>actors/237741.jpg</Image>
+  <Name>Penny Johnson</Name>
+  <Role>Capt. Victoria Gates</Role>
+  <SortOrder>3</SortOrder>
+</Actor>
+</Actors>
