@@ -1,4 +1,6 @@
 TheTVDBApi
 ==========
 
-A .Net Api for the TheTVDB.com database
+An API written in .NET C# to communicate with the TheTVDB database project.
+
+See the database at http://thetvdb.com/
