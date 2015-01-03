@@ -9,14 +9,14 @@ namespace TVDB.Interfaces
     using System.Xml;
 
     /// <summary>
-    /// Deserializes an object form the received xml.
+    /// Deserializes an object from the received XML.
     /// </summary>
     public interface IXmlSerializer
     {
         /// <summary>
-        /// Deserializes the provided xml node.
+        /// Deserializes the provided XML node.
         /// </summary>
-        /// <param name="node">Node to deserialize.</param>
+		/// <param name="node">Node to deserialize.</param>
         void Deserialize(XmlNode node);
     }
 }
