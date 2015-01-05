@@ -7,11 +7,7 @@
 namespace TVDB.Model
 {
 	using System;
-	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
-	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
 	using System.Xml;
 
 
@@ -768,6 +764,63 @@ namespace TVDB.Model
 		/// Deserializes the provided xml node.
 		/// </summary>
 		/// <param name="node">Node to deserialize.</param>
+		/// <exception cref="ArgumentNullException">Occurs when the provided <see cref="System.Xml.XmlNode"/> is null.</exception>
+		/// <example>This example shows how to use the deserialize method.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Xml document that contains all details of a series.
+		/// 		/// </summary>
+		/// 		private XmlDocument languageDoc = null;
+		/// 		
+		/// 		/// <summary>
+		/// 		/// Initializes a new instance of the DocuClass class.
+		/// 		/// </summary>
+		/// 		public DocuClass(string extractionPath)
+		/// 		{
+		/// 			// load series xml.
+		/// 			this.languageDoc = new XmlDocument();
+		/// 			this.languageDoc.Load(System.IO.Path.Combine(this.extractionPath, string.Format("{0}.xml", this.Language)));
+		/// 		}
+		/// 		
+		/// 		/// <summary>
+		/// 		/// Deserializes all actors of the series.
+		/// 		/// </summary>
+		/// 		public Series DeserializeSeries()
+		/// 		{
+		/// 			Series series = new Series();
+		/// 			
+		/// 			// load the xml docs second child.
+		/// 			XmlNode dataNode = this.languageDoc.ChildNodes[1];
+		/// 
+		/// 			// deserialize all episodes and series details.
+		/// 			foreach (XmlNode currentNode in dataNode.ChildNodes)
+		/// 			{
+		/// 				if (currentNode.Name.Equals("Episode", StringComparison.OrdinalIgnoreCase))
+		/// 				{
+		/// 					Episode deserialized = new Episode();
+		/// 					deserialized.Deserialize(currentNode);
+		/// 
+		/// 					series.AddEpisode(deserialized);
+		/// 					continue;
+		/// 				}
+		/// 				else if (currentNode.Name.Equals("Series", StringComparison.OrdinalIgnoreCase))
+		/// 				{
+		/// 					series.Deserialize(currentNode);
+		/// 					continue;
+		/// 				}
+		/// 			}
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public void Deserialize(System.Xml.XmlNode node)
 		{
 			if (node == null)
@@ -942,6 +995,7 @@ namespace TVDB.Model
 		/// Adds the provided episode to the series.
 		/// </summary>
 		/// <param name="toAdd">Episode to add.</param>
+		/// <exception cref="ArgumentNullException">Occurs when the provided <see cref="Episode"/> is null.</exception>
 		public void AddEpisode(Episode toAdd)
 		{
 			if (toAdd == null)

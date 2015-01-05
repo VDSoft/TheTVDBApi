@@ -6,15 +6,15 @@
 
 namespace TVDB.Web
 {
+	using Model;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
+	using System.IO.Compression;
+	using System.Linq;
 	using System.Net;
 	using System.Threading.Tasks;
 	using System.Xml;
-	using Model;
-	using System.IO.Compression;
-	using System.Linq;
 	
 	/// <summary>
 	/// Communication with the XML interface of the TVDB.
@@ -68,6 +68,29 @@ namespace TVDB.Web
 		/// Get all available mirrors.
 		/// </summary>
 		/// <returns>A Collection of mirrors.</returns>
+		/// <exception cref="Exception">Occurs when the main source of the TheTVDB seems to be offline.</exception>
+		/// <example>Shows how to request all available mirrors.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Gets all mirrors that are available.
+		/// 		/// </summary>
+		/// 		public List&#60;Mirror&#62; GetAllMirrors()
+		/// 		{
+		/// 			List&#60;Mirror&#62; mirrors = await TVDB.Web.WebInterface.Instance.GetMirrors();
+		/// 
+		/// 			return mirrors
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public async Task<List<Mirror>> GetMirrors()
 		{
 			string url = "http://thetvdb.com/api/{0}/mirrors.xml";
@@ -116,6 +139,28 @@ namespace TVDB.Web
 		/// Gets a list of all available languages.
 		/// </summary>
 		/// <returns>Collection of all available languages.</returns>
+		/// <example>Shows how to get all languages.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Gets all mirrors that are available.
+		/// 		/// </summary>
+		/// 		public List&#60;Language&#62; GetAllLanguages(Mirror mirror)
+		/// 		{
+		/// 			List&#60;Language&#62; languages = await TVDB.Web.WebInterface.Instance.GetLanguages(mirror);
+		/// 
+		/// 			return languages
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public async Task<List<Language>> GetLanguages()
 		{
 			// get the default mirror.
@@ -132,6 +177,28 @@ namespace TVDB.Web
 		/// </summary>
 		/// <param name="mirror">Mirror to use.</param>
 		/// <returns>Collection of all available languages.</returns>
+		/// <example>Shows how to get all languages.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Gets all mirrors that are available.
+		/// 		/// </summary>
+		/// 		public List&#60;Language&#62; GetAllLanguages(Mirror mirror)
+		/// 		{
+		/// 			List&#60;Language&#62; languages = await TVDB.Web.WebInterface.Instance.GetLanguages(mirror);
+		/// 
+		/// 			return languages
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public async Task<List<Language>> GetLanguages(Mirror mirror)
 		{
 			if (mirror == null)
@@ -165,10 +232,33 @@ namespace TVDB.Web
 		/// Gets all series that match with the provided name.
 		/// </summary>
 		/// <param name="name">Name of the series.</param>
+		/// <param name="mirror">The mirror to use.</param>
 		/// <remarks>
 		/// When calling this method a default language, which is english will be used to find all series that match the name.
 		/// </remarks>
 		/// <returns>List of series that matches the provided name.</returns>
+		/// <example>Shows how to get a series by name.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Gets series by name.
+		/// 		/// </summary>
+		/// 		public List&#60;Series&#62; GetSeries(string name, Mirror mirror, Language language)
+		/// 		{
+		/// 			List&#60;Series&#62; series = await TVDB.Web.WebInterface.Instance.GetSeriesByName(name, language.Abbreviation, mirror);
+		/// 
+		/// 			return series;
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public async Task<List<Series>> GetSeriesByName(string name, Mirror mirror)
 		{
 			if (string.IsNullOrEmpty(name))
@@ -189,7 +279,30 @@ namespace TVDB.Web
 		/// </summary>
 		/// <param name="name">Name of the series.</param>
 		/// <param name="languageAbbreviation">Abbreviation of the language to search the series.</param>
+		/// <param name="mirror">The mirror to use.</param>
 		/// <returns>List of series that matches the provided name.</returns>
+		/// <example>Shows how to get a series by name.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Gets series by name.
+		/// 		/// </summary>
+		/// 		public List&#60;Series&#62; GetSeries(string name, Mirror mirror, Language language)
+		/// 		{
+		/// 			List&#60;Series&#62; series = await TVDB.Web.WebInterface.Instance.GetSeriesByName(name, language.Abbreviation, mirror);
+		/// 
+		/// 			return series;
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public async Task<List<Series>> GetSeriesByName(string name, string languageAbbreviation, Mirror mirror)
 		{
 			if (string.IsNullOrEmpty(name))
@@ -233,11 +346,33 @@ namespace TVDB.Web
 		/// </summary>
 		/// <param name="imdbId">IMDB id</param>
 		/// <param name="zap2Id">Zap2It id</param>
-		/// <param name="mirror">Mirror to connect.</param>
+		/// <param name="mirror">The mirror to use.</param>
 		/// <returns>The Series belonging to the provided id.</returns>
 		/// <remarks>
 		/// It is not allowed to provide both imdb and zap2it id, this will lead to a null value as return value.
 		/// </remarks>
+		/// <example>Shows how the get a series by imdb and zap2 Id.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Gets series by id.
+		/// 		/// </summary>
+		/// 		public List&#60;Series&#62; GetSeries(string imdbId, string zap2Id, Mirror mirror, Language language)
+		/// 		{
+		/// 			List&#60;Series&#62; series = await TVDB.Web.WebInterface.Instance.GetSeriesByRemoteId(imdbId, zap2Id, language.Abbreviation, mirror);
+		/// 
+		/// 			return series;
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public async Task<List<Series>> GetSeriesByRemoteId(string imdbId, string zap2Id, Mirror mirror)
 		{
 			if (string.IsNullOrEmpty(imdbId) && string.IsNullOrEmpty(zap2Id))
@@ -264,11 +399,33 @@ namespace TVDB.Web
 		/// <param name="imdbId">IMDB id</param>
 		/// <param name="zap2Id">Zap2It id</param>
 		/// <param name="languageAbbreviation">The language abbreviation.</param>
-		/// <param name="mirror">Mirror to connect.</param>
+		/// <param name="mirror">The mirror to use.</param>
 		/// <returns>The Series belonging to the provided id.</returns>
 		/// <remarks>
 		/// It is not allowed to provide both imdb and zap2it id, this will lead to a null value as return value.
 		/// </remarks>
+		/// <example>Shows how the get a series by imdb and zap2 Id.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Gets series by id.
+		/// 		/// </summary>
+		/// 		public List&#60;Series&#62; GetSeries(string imdbId, string zap2Id, Mirror mirror, Language language)
+		/// 		{
+		/// 			List&#60;Series&#62; series = await TVDB.Web.WebInterface.Instance.GetSeriesByRemoteId(imdbId, zap2Id, language.Abbreviation, mirror);
+		/// 
+		/// 			return series;
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public async Task<List<Series>> GetSeriesByRemoteId(string imdbId, string zap2Id, string languageAbbreviation, Mirror mirror)
 		{
 			if (string.IsNullOrEmpty(imdbId) && string.IsNullOrEmpty(zap2Id))
@@ -317,8 +474,30 @@ namespace TVDB.Web
 		/// Gets all details of the series.
 		/// </summary>
 		/// <param name="id">Id of the series.</param>
-		/// <param name="mirror">Mirror to connect.</param>
+		/// <param name="mirror">The mirror to use.</param>
 		/// <returns>All details of the series.</returns>
+		/// <example>Shows how the get all details of a series by its id.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Gets all details of a series.
+		/// 		/// </summary>
+		/// 		public SeriesDetails GetSeries(int id, Mirror mirror, Language language)
+		/// 		{
+		/// 			SeriesDetails details = await TVDB.Web.WebInterface.Instance.GetFullSeriesById(id, language.Abbreviation, mirror);
+		/// 
+		/// 			return details;
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public async Task<SeriesDetails> GetFullSeriesById(int id, Mirror mirror)
 		{
 			if (id == 0)
@@ -339,8 +518,30 @@ namespace TVDB.Web
 		/// </summary>
 		/// <param name="id">Id of the series.</param>
 		/// <param name="languageAbbreviation">The language abbreviation.</param>
-		/// <param name="mirror">Mirror to connect.</param>
+		/// <param name="mirror">The mirror to use.</param>
 		/// <returns>All details of the series.</returns>
+		/// <example>Shows how the get all details of a series by its id.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Gets all details of a series.
+		/// 		/// </summary>
+		/// 		public SeriesDetails GetSeries(int id, Mirror mirror, Language language)
+		/// 		{
+		/// 			SeriesDetails details = await TVDB.Web.WebInterface.Instance.GetFullSeriesById(id, language.Abbreviation, mirror);
+		/// 
+		/// 			return details;
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public async Task<SeriesDetails> GetFullSeriesById(int id, string languageAbbreviation, Mirror mirror)
 		{
 			if (id == 0)

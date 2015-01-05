@@ -7,15 +7,10 @@
 namespace TVDB.Model
 {
 	using System;
-	using System.Collections.Generic;
 	using System.ComponentModel;
-	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
-
 
 	/// <summary>
-	/// TODO: Update Docu.
+	/// Defines the language of the series.
 	/// </summary>
 	public class Language : INotifyPropertyChanged, Interfaces.IXmlSerializer//, IComparable<Language>
 	{
@@ -131,6 +126,54 @@ namespace TVDB.Model
 		/// Deserializes the provided xml node.
 		/// </summary>
 		/// <param name="node">Node to deserialize.</param>
+		/// <exception cref="ArgumentNullException">Occurs when the provided <see cref="System.Xml.XmlNode"/> is null.</exception>
+		/// <example>This example shows how to use the deserialize method.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Xml document that contains all banners.
+		/// 		/// </summary>
+		/// 		private XmlDocument languageDoc = null;
+		/// 		
+		/// 		/// <summary>
+		/// 		/// Initializes a new instance of the DocuClass class.
+		/// 		/// </summary>
+		/// 		public DocuClass(string extractionPath)
+		/// 		{
+		/// 			// load actors xml.
+		/// 			this.languageDoc = new XmlDocument();
+		/// 			this.languageDoc.Load(System.IO.Path.Combine(this.extractionPath, "languages.xml"));
+		/// 		}
+		/// 		
+		/// 		/// <summary>
+		/// 		/// Deserializes all languages that are available.
+		/// 		/// </summary>
+		/// 		public List&#60;Language&#62; DeserializeLanguages()
+		/// 		{
+		/// 			List&#60;Language&#62; languages = new List&#60;Language&#62;();
+		/// 			
+		/// 			// load the xml docs second child.
+		/// 			XmlNode languageNode = this.languageDoc.ChildNodes[1];
+		/// 	
+		/// 			// deserialize all languages.
+		/// 			foreach (XmlNode currentNode in languageNode.ChildNodes)
+		/// 			{
+		/// 				Language deserialized = new Language();
+		/// 				deserialized.Deserialize(currentNode);
+		/// 
+		/// 				languages.Add(deserialized);
+		/// 			}
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public void Deserialize(System.Xml.XmlNode node)
 		{
 			if (node == null)
@@ -159,31 +202,6 @@ namespace TVDB.Model
 				}
 			}
 		}
-
-		/// <summary>
-		/// Compares the <see cref="Id"/> of the provided Language with this one.
-		/// </summary>
-		/// <param name="other">Language object to compare.</param>
-		/// <returns>
-		/// 0: Ids are euqal.
-		/// -1: Provided id is smaller than this one.
-		/// 1: Provided id is greater than this one.
-		/// </returns>
-		////public int CompareTo(Language other)
-		////{
-		////	if (this.Name < other.Name)
-		////	{
-		////		return -1;
-		////	}
-		////	else if (this.Name > other.Name)
-		////	{
-		////		return 1;
-		////	}
-		////	else
-		////	{
-		////		return 0;
-		////	}
-		////}
 
 		/// <summary>
 		/// Raises the <see cref="PropertyChanged"/> event.

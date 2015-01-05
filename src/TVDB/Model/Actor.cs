@@ -7,13 +7,8 @@
 namespace TVDB.Model
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Xml;
-
+	using System.ComponentModel;
+	using System.Xml;
 
     /// <summary>
     /// An Actor.
@@ -197,6 +192,57 @@ namespace TVDB.Model
         /// Deserializes the provided xml node.
         /// </summary>
         /// <param name="node">Node to deserialize.</param>
+		/// <exception cref="ArgumentNullException">Occurs when the provided <see cref="System.Xml.XmlNode"/> is null.</exception>
+		/// <example> This example shows how to use the deserialize method.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Xml document that contains all actors.
+		/// 		/// </summary>
+		/// 		private XmlDocument actorsDoc = null;
+		/// 		
+		/// 		/// <summary>
+		/// 		/// Initializes a new instance of the DocuClass class.
+		/// 		/// </summary>
+		/// 		public DocuClass(string extractionPath)
+		/// 		{
+		/// 			// load actors xml.
+		/// 			this.actorsDoc = new XmlDocument();
+		/// 			this.actorsDoc.Load(System.IO.Path.Combine(this.extractionPath, "actors.xml"));
+		/// 		}
+		/// 		
+		/// 		/// <summary>
+		/// 		/// Deserializes all actors of the series.
+		/// 		/// </summary>
+		/// 		public List&#60;Actor&#62; DeserializeActors()
+		/// 		{
+		/// 			List&#60;Actor&#62; actors = new List&#60;Actor&#62;();
+		/// 			
+		/// 			// load the xml docs second child.
+		/// 			XmlNode actorsNode = this.actorsDoc.ChildNodes[1];
+		/// 
+		/// 			// deserialize all actors.
+		/// 			foreach (XmlNode currentNode in actorsNode)
+		/// 			{
+		/// 				if (currentNode.Name.Equals("Actor", StringComparison.OrdinalIgnoreCase))
+		/// 				{
+		/// 					Actor deserializes = new Actor();
+		/// 					deserializes.Deserialize(currentNode);
+		/// 
+		/// 					actors.Add(deserializes);
+		/// 				}
+		/// 			}
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
         public void Deserialize(System.Xml.XmlNode node)
         {
             if (node == null)

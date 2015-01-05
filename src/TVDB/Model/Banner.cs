@@ -7,11 +7,7 @@
 namespace TVDB.Model
 {
 	using System;
-	using System.Collections.Generic;
 	using System.ComponentModel;
-	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
 	using System.Xml;
 
 	/// <summary>
@@ -446,6 +442,57 @@ namespace TVDB.Model
 		/// Deserializes a banner xml node.
 		/// </summary>
 		/// <param name="node">Node to deserialize.</param>
+		/// <exception cref="ArgumentNullException">Occurs when the provided <see cref="System.Xml.XmlNode"/> is null.</exception>
+		/// <example>This example shows how to use the deserialize method.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Xml document that contains all banners.
+		/// 		/// </summary>
+		/// 		private XmlDocument bannersDoc = null;
+		/// 		
+		/// 		/// <summary>
+		/// 		/// Initializes a new instance of the DocuClass class.
+		/// 		/// </summary>
+		/// 		public DocuClass(string extractionPath)
+		/// 		{
+		/// 			// load actors xml.
+		/// 			this.bannersDoc = new XmlDocument();
+		/// 			this.bannersDoc.Load(System.IO.Path.Combine(this.extractionPath, "banners.xml"));
+		/// 		}
+		/// 		
+		/// 		/// <summary>
+		/// 		/// Deserializes all banners of the series.
+		/// 		/// </summary>
+		/// 		public List&#60;Banner&#62; DeserializeBanners()
+		/// 		{
+		/// 			List&#60;Banner&#62; banners = new List&#60;Banner&#62;();
+		/// 			
+		/// 			// load the xml docs second child.
+		/// 			XmlNode bannersNode = this.bannersDoc.ChildNodes[1];
+		/// 
+		/// 			// deserialize all banners.
+		/// 			foreach (XmlNode currentNode in bannersNode.ChildNodes)
+		/// 			{
+		/// 				if (currentNode.Name.Equals("Banner", StringComparison.OrdinalIgnoreCase))
+		/// 				{
+		/// 					Banner deserialized = new Banner();
+		/// 					deserialized.Deserialize(currentNode);
+		/// 
+		/// 					banners.Add(deserialized);
+		/// 				}
+		/// 			}
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
 		public void Deserialize(XmlNode node)
 		{
 			if (node == null)

@@ -184,7 +184,7 @@ namespace TVDB.Model
         }
 
         /// <summary>
-        /// Occures when a property changed its value.
+        /// Occurs when a property changed its value.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -192,6 +192,64 @@ namespace TVDB.Model
         /// Deserializes the provided xml node.
         /// </summary>
         /// <param name="node">Node to deserialize.</param>
+		/// <exception cref="ArgumentNullException">Occurs when the provided <see cref="System.Xml.XmlNode"/> is null.</exception>
+		/// <example>This example shows how to use the deserialize method.
+		/// <code>
+		/// namespace Docunamespace
+		/// {
+		/// 	/// <summary>
+		/// 	/// Class for the docu.
+		/// 	/// </summary>
+		/// 	class DocuClass
+		/// 	{
+		/// 		/// <summary>
+		/// 		/// Xml document that contains all banners.
+		/// 		/// </summary>
+		/// 		private XmlDocument mirrorDoc = null;
+		/// 		
+		/// 		/// <summary>
+		/// 		/// Initializes a new instance of the DocuClass class.
+		/// 		/// </summary>
+		/// 		public DocuClass(string extractionPath)
+		/// 		{
+		/// 			// load actors xml.
+		/// 			this.mirrorDoc = new XmlDocument();
+		/// 			this.mirrorDoc.Load(System.IO.Path.Combine(this.extractionPath, "mirrors.xml"));
+		/// 		}
+		/// 		
+		/// 		/// <summary>
+		/// 		/// Deserializes all mirrors that are available.
+		/// 		/// </summary>
+		/// 		public List&#60;Mirror&#62; DeserializeMirrors()
+		/// 		{
+		/// 			List&#60;Mirror&#62; mirrors = new List&#60;Mirror&#62;();
+		/// 			
+		/// 			// load the xml docs second child.
+		/// 			XmlNode mirrorNode = this.mirrorDoc.ChildNodes[1];
+		/// 	
+		/// 			// deserialize all mirrors.
+		/// 			foreach (XmlNode currentNode in mirrorNode.ChildNodes)
+		/// 			{
+		/// 				Mirror deserialized = new Mirror();
+		/// 				deserialized.Deserialize(currentNode);
+		/// 
+		/// 				if (this.defaultMirror == null)
+		/// 				{
+		/// 					if (deserialized.ContainsBannerFile &#38;&#38; 
+		/// 						deserialized.ContainsXmlFile &#38;&#38; 
+		/// 						deserialized.ContainsZipFile)
+		/// 					{
+		/// 						this.defaultMirror = deserialized;
+		/// 					}
+		/// 				}
+		/// 
+		/// 				receivedMirrors.Add(deserialized);
+		/// 			}
+		/// 		}
+		/// 	}
+		/// }
+		/// </code>
+		/// </example>
         public void Deserialize(System.Xml.XmlNode node)
         {
             if (node == null)

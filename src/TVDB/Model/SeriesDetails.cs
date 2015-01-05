@@ -8,13 +8,10 @@ namespace TVDB.Model
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
 	using System.Xml;
 
 	/// <summary>
-	/// All details of a series.
+	/// Contains all details for the requested series like Actors, Banners and all episodes of the series.
 	/// </summary>
 	public class SeriesDetails : IDisposable
 	{
@@ -63,6 +60,8 @@ namespace TVDB.Model
 		/// </summary>
 		/// <param name="extractionPath">Path of the extracted files.</param>
 		/// <param name="language">Language of the series.</param>
+		/// <exception cref="System.IO.DirectoryNotFoundException">Occurs when the provided extraction path doesn't exists.</exception>
+		/// <exception cref="ArgumentNullException">Occurs when to provided language is null or empty.</exception>
 		public SeriesDetails(string extractionPath, string language)
 		{
 			System.IO.DirectoryInfo dirInfo = new System.IO.DirectoryInfo(extractionPath);
@@ -244,7 +243,6 @@ namespace TVDB.Model
 					this.Actors.Add(deserializes);
 				}
 			}
-
 		}
 
 		/// <summary>
