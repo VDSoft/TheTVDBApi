@@ -19,22 +19,17 @@ namespace TVDB.Web
 	/// <summary>
 	/// Communication with the XML interface of the TVDB.
 	/// </summary>
-	public class WebInterface
+	public class WebInterface : TVDB.Web.ITvDb
 	{
 		/// <summary>
 		/// Api key for the application.
 		/// </summary>
-		private const string APIKey = "CE1AECDA14314FD5";
+		private readonly string APIKey = null;
 
 		/// <summary>
 		/// Path of the full series zip file.
 		/// </summary>
 		private const string LoadedSeriesPath = "loaded.zip";
-
-		/// <summary>
-		/// Private instance of the <see cref="WebInterface"/> class.
-		/// </summary>
-		private static readonly WebInterface DefaultInstance = new WebInterface();
 
 		/// <summary>
 		/// Default mirror to connect to the api.
@@ -54,16 +49,14 @@ namespace TVDB.Web
 		}
 
 		/// <summary>
-		/// Gets the deafult instance of the <see cref="WebInterface"/> class.
+		/// Initializes a new instance of the <see cref="WebInterface"/> class, using the provided API key.
 		/// </summary>
-		public static WebInterface Instance
+		/// <param name="apiKey">API key obtained from TheTVDB.com to access the XML api.</param>
+		public WebInterface(string apiKey)
 		{
-			get
-			{
-				return DefaultInstance;
-			}
+			this.APIKey = apiKey;
 		}
-
+		
 		/// <summary>
 		/// Get all available mirrors.
 		/// </summary>
