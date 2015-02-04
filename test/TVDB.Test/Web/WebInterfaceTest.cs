@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TVDB.Web;
-using TVDB.Model;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
+using TVDB.Model;
+using TVDB.Web;
 
 namespace TVDB.Test.Web
 {
@@ -23,12 +23,18 @@ namespace TVDB.Test.Web
 			Id = 1
 		};
 
+		/// <summary>
+		/// Api key for testing.
+		/// </summary>
+		private readonly string apiKey = "CE1AECDA14314FD5";
+
 		#region GetMirrors tests
 
 		[TestMethod]
 		public void GetMirrorsTestSuccesfull()
 		{
-			Task<List<Mirror>> taskResult = WebInterface.Instance.GetMirrors();
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Mirror>> taskResult = target.GetMirrors();
 
 			List<Mirror> result = taskResult.Result;
 
@@ -42,7 +48,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetLanguagesTestSuccessfull()
 		{
-			Task<List<Language>> taskResult = WebInterface.Instance.GetLanguages();
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Language>> taskResult = target.GetLanguages();
 
 			List<Language> result = taskResult.Result;
 
@@ -52,7 +59,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetLanguagesTestSuccessfullWithMirror()
 		{
-			Task<List<Language>> taskResult = WebInterface.Instance.GetLanguages(this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Language>> taskResult = target.GetLanguages(this.testMirror);
 
 			List<Language> result = taskResult.Result;
 
@@ -62,7 +70,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetLanguagesTestFailedNoMirror()
 		{
-			Task<List<Language>> taskResult = WebInterface.Instance.GetLanguages(null);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Language>> taskResult = target.GetLanguages(null);
 
 			Assert.IsNull(taskResult.Result);
 		}
@@ -74,7 +83,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetSeriesByNameTestSuccessfull()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByName("Chuck", this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByName("Chuck", this.testMirror);
 
 			List<Series> result = taskResult.Result;
 
@@ -94,7 +104,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetSeriesByNameTestSuccessfullWithNameAndLanguage()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByName("Chuck", "en", this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByName("Chuck", "en", this.testMirror);
 
 			List<Series> result = taskResult.Result;
 
@@ -112,28 +123,32 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetSeriesByNameTestFailedNoSeriesName()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByName(string.Empty, this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByName(string.Empty, this.testMirror);
 			Assert.IsNull(taskResult.Result);
 		}
 
 		[TestMethod]
 		public void GetSeriesByNameTestFailedNoMirror()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByName("Hugo", null);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByName("Hugo", null);
 			Assert.IsNull(taskResult.Result);
 		}
 
 		[TestMethod]
 		public void GetSeriesByNameTestFailedSeriesNameNoLanguage()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByName("Hugo", string.Empty, this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByName("Hugo", string.Empty, this.testMirror);
 			Assert.IsNull(taskResult.Result);
 		}
 
 		[TestMethod]
 		public void GetSeriesByNameTestFailedSeriesNameLanguageNoMirror()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByName("Hugo", "en", null);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByName("Hugo", "en", null);
 			Assert.IsNull(taskResult.Result);
 		}
 		#endregion
@@ -143,7 +158,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetSeriesByRemoteIdTestSuccessfullImdbdId()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByRemoteId("tt0934814", string.Empty, this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByRemoteId("tt0934814", string.Empty, this.testMirror);
 
 			List<Series> result = taskResult.Result;
 
@@ -162,7 +178,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetSeriesByRemoteIdTestSuccessfullZap2ItId()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByRemoteId(string.Empty, "EP00930779", this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByRemoteId(string.Empty, "EP00930779", this.testMirror);
 			List<Series> result = taskResult.Result;
 
 			Assert.IsTrue(result.Count == 1);
@@ -180,7 +197,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetSeriesByRemoteIdTestSuccessfullImdbIdWithLanguage()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByRemoteId("tt0934814", string.Empty, "en", this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByRemoteId("tt0934814", string.Empty, "en", this.testMirror);
 			List<Series> result = taskResult.Result;
 
 			Assert.IsTrue(result.Count == 1);
@@ -198,7 +216,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetSeriesByRemoteIdTestSuccessfullZap2ItIdWithLanguage()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByRemoteId(string.Empty, "EP00930779", "en", this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByRemoteId(string.Empty, "EP00930779", "en", this.testMirror);
 			List<Series> result = taskResult.Result;
 
 			Assert.IsTrue(result.Count == 1);
@@ -216,7 +235,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetSeriesByRemoteIdTestFailedNoId()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByRemoteId(string.Empty, string.Empty, this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByRemoteId(string.Empty, string.Empty, this.testMirror);
 
 			Assert.IsNull(taskResult.Result);
 		}
@@ -224,7 +244,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetSeriesByRemoteIdTestFailedBothIds()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByRemoteId("tt0934814", "EP00930779", string.Empty, null);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByRemoteId("tt0934814", "EP00930779", string.Empty, null);
 
 			Assert.IsNull(taskResult.Result);
 		}
@@ -232,7 +253,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetSeriesByRemoteIdTestFailedNoLanguage()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByRemoteId("tt0934814", string.Empty, string.Empty, this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByRemoteId("tt0934814", string.Empty, string.Empty, this.testMirror);
 
 			Assert.IsNull(taskResult.Result);
 		}
@@ -240,7 +262,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetSeriesByRemoteIdTestFailedNoMirror()
 		{
-			Task<List<Series>> taskResult = WebInterface.Instance.GetSeriesByRemoteId("tt0934814", string.Empty, string.Empty, null);
+			WebInterface target = new WebInterface(apiKey);
+			Task<List<Series>> taskResult = target.GetSeriesByRemoteId("tt0934814", string.Empty, string.Empty, null);
 
 			Assert.IsNull(taskResult.Result);
 		}
@@ -252,7 +275,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetFullSeriesByIdTestSuccessfullWithDefaultLanguage()
 		{
-			Task<SeriesDetails> taskResult = WebInterface.Instance.GetFullSeriesById(83462, this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<SeriesDetails> taskResult = target.GetFullSeriesById(83462, this.testMirror);
 			SeriesDetails result = taskResult.Result;
 			Episode firstEpisode = result.Series.Episodes.First(x => x.SeasonNumber == 1 && x.Number == 1);
 
@@ -283,7 +307,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetFullSeriesByIdTestSuccessfullWithLanguage()
 		{
-			Task<SeriesDetails> taskResult = WebInterface.Instance.GetFullSeriesById(83462, "de", this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<SeriesDetails> taskResult = target.GetFullSeriesById(83462, "de", this.testMirror);
 			SeriesDetails result = taskResult.Result;
 
 
@@ -310,7 +335,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetFullSeriesByIdFailedNoId()
 		{
-			Task<SeriesDetails> taskResult = WebInterface.Instance.GetFullSeriesById(0, this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<SeriesDetails> taskResult = target.GetFullSeriesById(0, this.testMirror);
 
 			Assert.IsNull(taskResult.Result);
 		}
@@ -318,7 +344,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetFullSeriesByIdFailedNoMirror()
 		{
-			Task<SeriesDetails> taskResult = WebInterface.Instance.GetFullSeriesById(83462, null);
+			WebInterface target = new WebInterface(apiKey);
+			Task<SeriesDetails> taskResult = target.GetFullSeriesById(83462, null);
 
 			Assert.IsNull(taskResult.Result);
 		}
@@ -326,7 +353,8 @@ namespace TVDB.Test.Web
 		[TestMethod]
 		public void GetFullSeriesByIdFailedNoLanguage()
 		{
-			Task<SeriesDetails> taskResult = WebInterface.Instance.GetFullSeriesById(83462, string.Empty, this.testMirror);
+			WebInterface target = new WebInterface(apiKey);
+			Task<SeriesDetails> taskResult = target.GetFullSeriesById(83462, string.Empty, this.testMirror);
 
 			Assert.IsNull(taskResult.Result);
 		}
