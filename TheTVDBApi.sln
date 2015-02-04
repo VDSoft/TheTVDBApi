@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVDB.Test", "test\TVDB.Test\TVDB.Test.csproj", "{63DFCD1F-804D-471A-9986-E98A8DE5EDFC}"
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Docu", "Docu\Docu.shfbproj", "{A163EBDA-1E5A-48C6-B885-186AEE04216C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A265B83F-495E-43BD-B1F5-C89B58618A84} = {A265B83F-495E-43BD-B1F5-C89B58618A84}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -76,7 +76,7 @@ namespace TVDB.Web
 		/// 		/// </summary>
 		/// 		public List&#60;Mirror&#62; GetAllMirrors()
 		/// 		{
-		/// 			string apiKey = "ABCD12345";
+		///				string apiKey = "ABCD12345";
 		/// 			TVDB.Web.ITvDb instance = new TVDB.Web.WebInterface(apiKey);
 		/// 			List&#60;Mirror&#62; mirrors = await instance.GetMirrors();
 		/// 
@@ -148,7 +148,7 @@ namespace TVDB.Web
 		/// 		/// </summary>
 		/// 		public List&#60;Language&#62; GetAllLanguages(Mirror mirror)
 		/// 		{
-		///		 		string apiKey = "ABCD12345";
+		///				string apiKey = "ABCD12345";
 		/// 			TVDB.Web.ITvDb instance = new TVDB.Web.WebInterface(apiKey);
 		/// 			List&#60;Language&#62; languages = await instance.GetLanguages(mirror);
 		/// 
@@ -188,7 +188,7 @@ namespace TVDB.Web
 		/// 		/// </summary>
 		/// 		public List&#60;Language&#62; GetAllLanguages(Mirror mirror)
 		/// 		{
-		///		 		string apiKey = "ABCD12345";
+		///				string apiKey = "ABCD12345";
 		/// 			TVDB.Web.ITvDb instance = new TVDB.Web.WebInterface(apiKey);
 		/// 			List&#60;Language&#62; languages = await instance.GetLanguages(mirror);
 		/// 
@@ -250,7 +250,7 @@ namespace TVDB.Web
 		/// 		/// </summary>
 		/// 		public List&#60;Series&#62; GetSeries(string name, Mirror mirror, Language language)
 		/// 		{
-		///		 		string apiKey = "ABCD12345";
+		///				string apiKey = "ABCD12345";
 		/// 			TVDB.Web.ITvDb instance = new TVDB.Web.WebInterface(apiKey);
 		/// 			List&#60;Series&#62; series = await instance.GetSeriesByName(name, language.Abbreviation, mirror);
 		/// 
@@ -296,7 +296,7 @@ namespace TVDB.Web
 		/// 		/// </summary>
 		/// 		public List&#60;Series&#62; GetSeries(string name, Mirror mirror, Language language)
 		/// 		{
-		///		 		string apiKey = "ABCD12345";
+		///				string apiKey = "ABCD12345";
 		/// 			TVDB.Web.ITvDb instance = new TVDB.Web.WebInterface(apiKey);
 		/// 			List&#60;Series&#62; series = await instance.GetSeriesByName(name, language.Abbreviation, mirror);
 		/// 
@@ -368,7 +368,7 @@ namespace TVDB.Web
 		/// 		/// </summary>
 		/// 		public List&#60;Series&#62; GetSeries(string imdbId, string zap2Id, Mirror mirror, Language language)
 		/// 		{
-		///		 		string apiKey = "ABCD12345";
+		///				string apiKey = "ABCD12345";
 		/// 			TVDB.Web.ITvDb instance = new TVDB.Web.WebInterface(apiKey);
 		/// 			List&#60;Series&#62; series = await instance.GetSeriesByRemoteId(imdbId, zap2Id, language.Abbreviation, mirror);
 		/// 
@@ -423,7 +423,7 @@ namespace TVDB.Web
 		/// 		/// </summary>
 		/// 		public List&#60;Series&#62; GetSeries(string imdbId, string zap2Id, Mirror mirror, Language language)
 		/// 		{
-		///		 		string apiKey = "ABCD12345";
+		///				string apiKey = "ABCD12345";
 		/// 			TVDB.Web.ITvDb instance = new TVDB.Web.WebInterface(apiKey);
 		/// 			List&#60;Series&#62; series = await instance.GetSeriesByRemoteId(imdbId, zap2Id, language.Abbreviation, mirror);
 		/// 
@@ -497,7 +497,7 @@ namespace TVDB.Web
 		/// 		/// </summary>
 		/// 		public SeriesDetails GetSeries(int id, Mirror mirror, Language language)
 		/// 		{
-		///		 		string apiKey = "ABCD12345";
+		///				string apiKey = "ABCD12345";
 		/// 			TVDB.Web.ITvDb instance = new TVDB.Web.WebInterface(apiKey);
 		/// 			SeriesDetails details = await instance.GetFullSeriesById(id, language.Abbreviation, mirror);
 		/// 
@@ -543,7 +543,7 @@ namespace TVDB.Web
 		/// 		/// </summary>
 		/// 		public SeriesDetails GetSeries(int id, Mirror mirror, Language language)
 		/// 		{
-		///		 		string apiKey = "ABCD12345";
+		///				string apiKey = "ABCD12345";
 		/// 			TVDB.Web.ITvDb instance = new TVDB.Web.WebInterface(apiKey);
 		/// 			SeriesDetails details = await instance.GetFullSeriesById(id, language.Abbreviation, mirror);
 		/// 
