@@ -23,23 +23,23 @@ namespace Docunamespace
     /// </summary>
     class DocuClass
     {
-	/// <summary>
-	/// Api key for the application.
-	/// </summary>
-	private readonly string apiKey = "ABCD12345";
-    
-        /// <summary>
-	/// Setup for ninject.
-	/// </summary>
-	private void SetupKernel()
-	{
-		IKernel kernel = new StandardKernel();
-
-		kernel.Bind<ITvDb>()
-			.To<WebInterface>()
-			.InSingletonScope()
-			.WithConstructorArgument("apiKey", this.apiKey);
-	}
+		/// <summary>
+		/// Api key for the application.
+		/// </summary>
+		private readonly string apiKey = "ABCD12345";
+	
+		/// <summary>
+		/// Setup for ninject.
+		/// </summary>
+		private void SetupKernel()
+		{
+			IKernel kernel = new StandardKernel();
+	
+			kernel.Bind<ITvDb>()
+				.To<WebInterface>()
+				.InSingletonScope()
+				.WithConstructorArgument("apiKey", this.apiKey);
+		}
     }
 }
 ```
