@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="cfe8c731-0bc3-46cf-bfc3-37b179cd6ca9" visible="True" isDefault="true" title="Welcome to the TheTVDBApi">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="Welcome" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="e510af87-b13e-488b-a62d-b0110bbe9069" visible="True" isExpanded="true" title="Version History">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="version, history" />
+    </HelpKeywords>
+    <Topic id="fd8f411c-3f53-49e4-82c4-1e152342b9bd" visible="True" title="Version 1.0.0.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="version, 1.0.0.0" />
+      </HelpKeywords>
+    </Topic>
+    <Topic id="eca7668a-8669-4879-97ac-87c4517d1c87" visible="True" isSelected="true" title="Version 1.1.0.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="version, 1.1.0.0" />
+      </HelpKeywords>
+    </Topic>
+  </Topic>
+</Topics>
