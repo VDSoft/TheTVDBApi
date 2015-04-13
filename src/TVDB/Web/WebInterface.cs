@@ -32,7 +32,7 @@ namespace TVDB.Web
 		private const string LoadedSeriesPath = "loaded.zip";
 
 		/// <summary>
-		/// Default mirror to connect to the api.
+		/// Default mirror site to connect to the api.
 		/// </summary>
 		private Mirror defaultMirror = null;
 
