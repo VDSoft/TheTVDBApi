@@ -94,7 +94,7 @@ namespace TVDB.Web
 
 			try
 			{
-				 result = this.client.DownloadData(string.Format(url, this.APIKey));
+				 result = await this.client.DownloadDataTaskAsync(string.Format(url, this.APIKey));
 			}
 			catch (Exception ex)
 			{
@@ -207,7 +207,7 @@ namespace TVDB.Web
 
 			string url = "{0}/api/{1}/languages.xml";
 
-			byte[] result = this.client.DownloadData(string.Format(url, mirror.Address, APIKey));
+			byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, APIKey));
 			MemoryStream resultStream = new MemoryStream(result);
 
 			XmlDocument doc = new XmlDocument();
@@ -272,7 +272,7 @@ namespace TVDB.Web
 				return null;
 			}
 
-			return this.GetSeriesByName(name, "en", mirror).Result;
+			return await this.GetSeriesByName(name, "en", mirror);
 		}
 
 		/// <summary>
@@ -325,7 +325,7 @@ namespace TVDB.Web
 
 			string url = "{0}/api/GetSeries.php?seriesname={1}&language={2}";
 
-			byte[] result = this.client.DownloadData(string.Format(url, mirror.Address, name, languageAbbreviation));
+			byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, name, languageAbbreviation));
 			MemoryStream resultStream = new MemoryStream(result);
 
 			XmlDocument doc = new XmlDocument();
@@ -457,7 +457,7 @@ namespace TVDB.Web
 
 			string url = "{0}/api/GetSeriesByRemoteID.php?imdbid={1}&language={2}&zap2it={3}";
 
-			byte[] result = this.client.DownloadData(string.Format(url, mirror.Address, imdbId, languageAbbreviation, zap2Id));
+			byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, imdbId, languageAbbreviation, zap2Id));
 			MemoryStream resultStream = new MemoryStream(result);
 
 			XmlDocument doc = new XmlDocument();
@@ -571,7 +571,7 @@ namespace TVDB.Web
 			}
 
 			string url = "{0}/api/{1}/series/{2}/all/{3}.zip";
-			byte[] result = this.client.DownloadData(string.Format(url, mirror.Address, this.APIKey, id, languageAbbreviation));
+			byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, this.APIKey, id, languageAbbreviation));
 
 			// store the zip file.
 			using (FileStream zipFile = new FileStream(LoadedSeriesPath, FileMode.Create, FileAccess.Write))
