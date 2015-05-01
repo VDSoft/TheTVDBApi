@@ -26,12 +26,20 @@ namespace TVDB.Web
 		/// </summary>
 		private readonly string APIKey = null;
 
-		/// <summary>
-		/// Path of the full series zip file.
-		/// </summary>
-		private const string LoadedSeriesPath = "loaded.zip";
+        /// <summary>
+        /// Directory for writing zip and extracted files
+        /// </summary>
+	    public string FileDirectory { get; set; }
 
-		/// <summary>
+	    /// <summary>
+	    /// Path of the full series zip file.
+	    /// </summary>
+	    private string LoadedSeriesPath
+	    {
+	        get { return Path.Combine(FileDirectory, "loaded.zip"); }
+	    }
+
+	    /// <summary>
 		/// Default mirror site to connect to the api.
 		/// </summary>
 		private Mirror defaultMirror = null;
@@ -55,6 +63,7 @@ namespace TVDB.Web
 		public WebInterface(string apiKey)
 		{
 			this.APIKey = apiKey;
+		    this.FileDirectory = string.Empty;
 		}
 		
 		/// <summary>
@@ -581,7 +590,7 @@ namespace TVDB.Web
 				zipFile.Close();
 			}
 
-			DirectoryInfo dirInfo = new DirectoryInfo("extraction");
+		    DirectoryInfo dirInfo = new DirectoryInfo(Path.Combine(FileDirectory, "extraction"));
 			if (!dirInfo.Exists)
 			{
 				dirInfo.Create();
@@ -593,7 +602,7 @@ namespace TVDB.Web
 			{
 				foreach (ZipArchiveEntry entry in archive.Entries)
 				{
-					entry.ExtractToFile(Path.Combine(dirInfo.Name, entry.Name), true);
+					entry.ExtractToFile(Path.Combine(dirInfo.FullName, entry.Name), true);
 				}
 			}
 
