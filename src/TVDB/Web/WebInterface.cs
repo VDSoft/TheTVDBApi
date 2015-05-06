@@ -26,17 +26,12 @@ namespace TVDB.Web
 		/// </summary>
 		private readonly string APIKey = null;
 
-        /// <summary>
-        /// Directory for writing zip and extracted files
-        /// </summary>
-	    public string FileDirectory { get; set; }
-
 	    /// <summary>
 	    /// Path of the full series zip file.
 	    /// </summary>
-	    private string LoadedSeriesPath
+	    private string loadedSeriesPath
 	    {
-	        get { return Path.Combine(FileDirectory, "loaded.zip"); }
+	        get { return Path.Combine(this.FileDirectory, "loaded.zip"); }
 	    }
 
 	    /// <summary>
@@ -61,10 +56,25 @@ namespace TVDB.Web
 		/// </summary>
 		/// <param name="apiKey">API key obtained from TheTVDB.com to access the XML api.</param>
 		public WebInterface(string apiKey)
+			:this(apiKey, string.Empty)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="WebInterface"/> class.
+		/// </summary>
+		/// <param name="apiKey">API key obtained from TheTVDB.com to access the XML api.</param>
+		/// <param name="fileDirectory">Directory where all loaded files will be stored.</param>
+		public WebInterface(string apiKey, string fileDirectory)
 		{
 			this.APIKey = apiKey;
-		    this.FileDirectory = string.Empty;
+			this.FileDirectory = fileDirectory;
 		}
+
+		/// <summary>
+		/// Directory for writing zip and extracted files
+		/// </summary>
+		public string FileDirectory { get; set; }
 		
 		/// <summary>
 		/// Get all available mirrors.
@@ -583,7 +593,7 @@ namespace TVDB.Web
 			byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, this.APIKey, id, languageAbbreviation));
 
 			// store the zip file.
-			using (FileStream zipFile = new FileStream(LoadedSeriesPath, FileMode.Create, FileAccess.Write))
+			using (FileStream zipFile = new FileStream(this.loadedSeriesPath, FileMode.Create, FileAccess.Write))
 			{
 				zipFile.Write(result, 0, (int)result.Length);
 				zipFile.Flush();
@@ -598,7 +608,7 @@ namespace TVDB.Web
 
 
 			// extract the file.
-			using (ZipArchive archive = ZipFile.OpenRead(LoadedSeriesPath))
+			using (ZipArchive archive = ZipFile.OpenRead(this.loadedSeriesPath))
 			{
 				foreach (ZipArchiveEntry entry in archive.Entries)
 				{
