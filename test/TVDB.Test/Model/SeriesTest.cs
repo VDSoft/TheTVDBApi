@@ -1,15 +1,14 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TVDB.Model;
+using Xunit;
 
 namespace TVDB.Test.Model
 {
-    [TestClass]
     public class SeriesTest
     {
         #region Initialize tests
 
-        [TestMethod]
+        [Fact]
         public void InitializeTestSuccessfullNoEpisodes()
         {
             Series target = new Series();
@@ -17,10 +16,10 @@ namespace TVDB.Test.Model
             var method = targetType.GetMethod("Initialize", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             method.Invoke(target, new object[0]);
 
-            Assert.IsFalse(target.HasEpisodes);
+            Assert.False(target.HasEpisodes);
         }
 
-        [TestMethod]
+		[Fact]
         public void InitializeTestSuccessfullWithEpisodes()
         {
             Series target = new Series();
@@ -29,14 +28,14 @@ namespace TVDB.Test.Model
             var method = targetType.GetMethod("Initialize", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             method.Invoke(target, new object[0]);
 
-            Assert.IsTrue(target.HasEpisodes);
+            Assert.True(target.HasEpisodes);
         }
 
         #endregion
 
         #region Deserialize tests
 
-        [TestMethod]
+		[Fact]
         public void DeserializeTestSuccessfull()
         {
             string xmlContent =
@@ -77,41 +76,44 @@ namespace TVDB.Test.Model
             string expectedPoster = "posters/83462-6.jpg";
             bool expectedTMSWanted = true;
 
-            Assert.AreEqual(expectedId, target.Id);
-            Assert.AreEqual(expectedLanguage, target.Language);
-            Assert.AreEqual(expectedName, target.Name);
-            Assert.AreEqual(expectedBannerPath, target.Banner);
-            Assert.AreEqual(expectedOverview, target.Overview);
-            Assert.AreEqual(expectedFirstAired, target.FirstAired);
-            Assert.AreEqual(expectedIMDBId, target.IMDBId);
-            Assert.AreEqual(expectedZap2itId, target.Zap2ItId);
-            Assert.IsFalse(target.HasEpisodes);
-            Assert.AreEqual(expectedActors, target.Actorts);
-            Assert.AreEqual(expectedGener, target.Genre);
-            Assert.AreEqual(expectedDayAired, target.AirsDayOfWeel);
-            Assert.AreEqual(expectedTimeAired, target.AirsTime);
-            Assert.AreEqual(expectedContentRating, target.ContentRating);
-            Assert.AreEqual(expectedNetwork, target.Network);
-            Assert.AreEqual(expectedNetworkID, target.NetworkId);
-            Assert.AreEqual(expectedRating, target.Rating);
-            Assert.AreEqual(expectedRatingCount, target.RatingCount);
-            Assert.AreEqual(expectedRunTime, target.Runtime);
-            Assert.AreEqual(expectedSeriesID, target.SeriesId);
-            Assert.AreEqual(expectedStatus, target.Status);
-            Assert.AreEqual(expectedAddedDate, target.AddedDate);
-            Assert.AreEqual(expectedAddedByUserId, target.AddedByUserId);
-            Assert.AreEqual(expectedBanner, target.Banner);
-            Assert.AreEqual(expectedFanArt, target.FanArt);
-            Assert.AreEqual(expectedPoster, target.Poster);
-            Assert.AreEqual(expectedTMSWanted, target.TMSWanted);
+            Assert.Equal(expectedId, target.Id);
+            Assert.Equal(expectedLanguage, target.Language);
+            Assert.Equal(expectedName, target.Name);
+            Assert.Equal(expectedBannerPath, target.Banner);
+            Assert.Equal(expectedOverview, target.Overview);
+            Assert.Equal(expectedFirstAired, target.FirstAired);
+            Assert.Equal(expectedIMDBId, target.IMDBId);
+            Assert.Equal(expectedZap2itId, target.Zap2ItId);
+            Assert.False(target.HasEpisodes);
+            Assert.Equal(expectedActors, target.Actorts);
+            Assert.Equal(expectedGener, target.Genre);
+            Assert.Equal(expectedDayAired, target.AirsDayOfWeel);
+            Assert.Equal(expectedTimeAired, target.AirsTime);
+            Assert.Equal(expectedContentRating, target.ContentRating);
+            Assert.Equal(expectedNetwork, target.Network);
+            Assert.Equal(expectedNetworkID, target.NetworkId);
+            Assert.Equal(expectedRating, target.Rating);
+            Assert.Equal(expectedRatingCount, target.RatingCount);
+            Assert.Equal(expectedRunTime, target.Runtime);
+            Assert.Equal(expectedSeriesID, target.SeriesId);
+            Assert.Equal(expectedStatus, target.Status);
+            Assert.Equal(expectedAddedDate, target.AddedDate);
+            Assert.Equal(expectedAddedByUserId, target.AddedByUserId);
+            Assert.Equal(expectedBanner, target.Banner);
+            Assert.Equal(expectedFanArt, target.FanArt);
+            Assert.Equal(expectedPoster, target.Poster);
+            Assert.Equal(expectedTMSWanted, target.TMSWanted);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
         public void DeserializeTestFailedNoNode()
         {
             Series target = new Series();
-            target.Deserialize(null);
+
+			ArgumentNullException expected = new ArgumentNullException("node", "Provided node must not be null.");
+			ArgumentNullException actual = Assert.Throws<ArgumentNullException>(() => target.Deserialize(null));
+
+			Assert.Equal(expected.Message, actual.Message);
         }
 
         #endregion

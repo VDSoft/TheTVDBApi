@@ -1,31 +1,30 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TVDB.Model;
+using Xunit;
 
 namespace TVDB.Test.Model
 {
-    [TestClass]
     public class MirrorTest
     {
         #region Constructor tests
 
-        [TestMethod]
+        [Fact]
         public void BaseContructorTest()
         {
             Mirror target = new Mirror();
 
-            Assert.AreEqual(0, target.Id);
-            Assert.IsTrue(string.IsNullOrEmpty(target.Address));
-            Assert.IsFalse(target.ContainsBannerFile);
-            Assert.IsFalse(target.ContainsXmlFile);
-            Assert.IsFalse(target.ContainsZipFile);
+            Assert.Equal(0, target.Id);
+            Assert.True(string.IsNullOrEmpty(target.Address));
+            Assert.False(target.ContainsBannerFile);
+            Assert.False(target.ContainsXmlFile);
+            Assert.False(target.ContainsZipFile);
         }
 
         #endregion
 
         #region ConvertTypeMaskTests
 
-        [TestMethod]
+        [Fact]
         public void ConvertTypeMaskTestSuccessfullValue0()
         {
             Mirror target = new Mirror();
@@ -36,12 +35,12 @@ namespace TVDB.Test.Model
             int typeMask = 0;
             method.Invoke(target, new object[] { typeMask });
 
-            Assert.IsFalse(target.ContainsBannerFile);
-            Assert.IsFalse(target.ContainsXmlFile);
-            Assert.IsFalse(target.ContainsZipFile);
+            Assert.False(target.ContainsBannerFile);
+            Assert.False(target.ContainsXmlFile);
+            Assert.False(target.ContainsZipFile);
         }
 
-        [TestMethod]
+        [Fact]
         public void ConvertTypeMaskTestSuccessfullValue1()
         {
             Mirror target = new Mirror();
@@ -52,12 +51,12 @@ namespace TVDB.Test.Model
             int typeMask = 1;
             method.Invoke(target, new object[] { typeMask });
 
-            Assert.IsFalse(target.ContainsBannerFile);
-            Assert.IsTrue(target.ContainsXmlFile);
-            Assert.IsFalse(target.ContainsZipFile);
+            Assert.False(target.ContainsBannerFile);
+            Assert.True(target.ContainsXmlFile);
+            Assert.False(target.ContainsZipFile);
         }
 
-        [TestMethod]
+        [Fact]
         public void ConvertTypeMaskTestSuccessfullValue2()
         {
             Mirror target = new Mirror();
@@ -68,12 +67,12 @@ namespace TVDB.Test.Model
             int typeMask = 2;
             method.Invoke(target, new object[] { typeMask });
 
-            Assert.IsTrue(target.ContainsBannerFile);
-            Assert.IsFalse(target.ContainsXmlFile);
-            Assert.IsFalse(target.ContainsZipFile);
+            Assert.True(target.ContainsBannerFile);
+            Assert.False(target.ContainsXmlFile);
+            Assert.False(target.ContainsZipFile);
         }
 
-        [TestMethod]
+        [Fact]
         public void ConvertTypeMaskTestSuccessfullValue4()
         {
             Mirror target = new Mirror();
@@ -84,12 +83,12 @@ namespace TVDB.Test.Model
             int typeMask = 4;
             method.Invoke(target, new object[] { typeMask });
 
-            Assert.IsFalse(target.ContainsBannerFile);
-            Assert.IsFalse(target.ContainsXmlFile);
-            Assert.IsTrue(target.ContainsZipFile);
+            Assert.False(target.ContainsBannerFile);
+            Assert.False(target.ContainsXmlFile);
+            Assert.True(target.ContainsZipFile);
         }
 
-        [TestMethod]
+        [Fact]
         public void ConvertTypeMaskTestSuccessfullValue3()
         {
             Mirror target = new Mirror();
@@ -100,12 +99,12 @@ namespace TVDB.Test.Model
             int typeMask = 3;
             method.Invoke(target, new object[] { typeMask });
 
-            Assert.IsTrue(target.ContainsBannerFile);
-            Assert.IsTrue(target.ContainsXmlFile);
-            Assert.IsFalse(target.ContainsZipFile);
+            Assert.True(target.ContainsBannerFile);
+            Assert.True(target.ContainsXmlFile);
+            Assert.False(target.ContainsZipFile);
         }
 
-        [TestMethod]
+        [Fact]
         public void ConvertTypeMaskTestSuccessfullValue5()
         {
             Mirror target = new Mirror();
@@ -116,12 +115,12 @@ namespace TVDB.Test.Model
             int typeMask = 5;
             method.Invoke(target, new object[] { typeMask });
 
-            Assert.IsFalse(target.ContainsBannerFile);
-            Assert.IsTrue(target.ContainsXmlFile);
-            Assert.IsTrue(target.ContainsZipFile);
+            Assert.False(target.ContainsBannerFile);
+            Assert.True(target.ContainsXmlFile);
+            Assert.True(target.ContainsZipFile);
         }
 
-        [TestMethod]
+        [Fact]
         public void ConvertTypeMaskTestSuccessfullValue6()
         {
             Mirror target = new Mirror();
@@ -132,12 +131,12 @@ namespace TVDB.Test.Model
             int typeMask = 6;
             method.Invoke(target, new object[] { typeMask });
 
-            Assert.IsTrue(target.ContainsBannerFile);
-            Assert.IsFalse(target.ContainsXmlFile);
-            Assert.IsTrue(target.ContainsZipFile);
+            Assert.True(target.ContainsBannerFile);
+            Assert.False(target.ContainsXmlFile);
+            Assert.True(target.ContainsZipFile);
         }
 
-        [TestMethod]
+        [Fact]
         public void ConvertTypeMaskTestSuccessfullValue7()
         {
             Mirror target = new Mirror();
@@ -148,16 +147,16 @@ namespace TVDB.Test.Model
             int typeMask = 7;
             method.Invoke(target, new object[] { typeMask });
 
-            Assert.IsTrue(target.ContainsBannerFile);
-            Assert.IsTrue(target.ContainsXmlFile);
-            Assert.IsTrue(target.ContainsZipFile);
+            Assert.True(target.ContainsBannerFile);
+            Assert.True(target.ContainsXmlFile);
+            Assert.True(target.ContainsZipFile);
         }
 
         #endregion
 
         #region Deserialize test
 
-        [TestMethod]
+        [Fact]
         public void DeserializeTestSuccessfull()
         {
             string xmlContent =
@@ -175,19 +174,22 @@ namespace TVDB.Test.Model
             int expectedID = 1;
             string expectedAddress = "http://thetvdb.com";
 
-            Assert.AreEqual(expectedID, target.Id);
-            Assert.AreEqual(expectedAddress, target.Address);
-            Assert.IsTrue(target.ContainsBannerFile);
-            Assert.IsTrue(target.ContainsXmlFile);
-            Assert.IsTrue(target.ContainsZipFile);
+            Assert.Equal(expectedID, target.Id);
+            Assert.Equal(expectedAddress, target.Address);
+            Assert.True(target.ContainsBannerFile);
+            Assert.True(target.ContainsXmlFile);
+            Assert.True(target.ContainsZipFile);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void DeserializeTestSuccesfullNoNode()
         {
             Mirror target = new Mirror();
-            target.Deserialize(null);
+
+			ArgumentNullException expected = new ArgumentNullException("node", "Provided node must not be null.");
+			ArgumentNullException actual = Assert.Throws<ArgumentNullException>(() => target.Deserialize(null));
+
+			Assert.Equal(expected.Message, actual.Message);
         }
 
         #endregion

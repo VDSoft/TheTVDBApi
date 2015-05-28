@@ -1,29 +1,28 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TVDB.Model;
+using Xunit;
 
 namespace TVDB.Test.Model
 {
-    [TestClass]
     public class LanguageTest
     {
         #region Constructor tests
 
-        [TestMethod]
+        [Fact]
         public void DefaulConstructorTestSuccessfull()
         {
             Language target = new Language();
 
-            Assert.AreEqual(0, target.Id);
-            Assert.IsTrue(string.IsNullOrEmpty(target.Name));
-            Assert.IsTrue(string.IsNullOrEmpty(target.Abbreviation));
+            Assert.Equal(0, target.Id);
+            Assert.True(string.IsNullOrEmpty(target.Name));
+            Assert.True(string.IsNullOrEmpty(target.Abbreviation));
         }
 
         #endregion
 
         #region Deserialize tests
 
-        [TestMethod]
+        [Fact]
         public void DeserializeTestSuccessfull()
         {
             string xmlContent =
@@ -42,17 +41,20 @@ namespace TVDB.Test.Model
             string expectedName = "Dansk";
             string expectedAbbreviation = "da";
 
-            Assert.AreEqual(expectedId, target.Id);
-            Assert.AreEqual(expectedName, target.Name);
-            Assert.AreEqual(expectedAbbreviation, target.Abbreviation);
+            Assert.Equal(expectedId, target.Id);
+            Assert.Equal(expectedName, target.Name);
+            Assert.Equal(expectedAbbreviation, target.Abbreviation);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void DeserializeTestFailedNoNode()
         {
             Language target = new Language();
-            target.Deserialize(null);
+
+			ArgumentNullException expected = new ArgumentNullException("node", "Provided node must not be null or empty");
+			ArgumentNullException actual = Assert.Throws<ArgumentNullException>(() => target.Deserialize(null));
+
+			Assert.Equal(expected.Message, actual.Message);
         }
 
         #endregion
