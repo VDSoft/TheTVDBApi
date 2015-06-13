@@ -126,4 +126,13 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <!--Custom Steps-->
+  <UsingTask
+    AssemblyFile="xunit.runner.msbuild.dll"
+    TaskName="Xunit.Runner.MSBuild.xunit"/>
+
+  <Target Name="Test">
+    <xunit Assembly="TVDB.Test\bin\Release\MyTests.dll" />
+  </Target>
+  
 </Project>
