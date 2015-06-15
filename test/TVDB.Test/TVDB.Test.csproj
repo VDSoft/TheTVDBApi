@@ -127,12 +127,12 @@
   </Target>
   -->
   <!--Custom Steps-->
-  <UsingTask
+  <!--<UsingTask
     AssemblyFile="xunit.runner.msbuild.dll"
     TaskName="Xunit.Runner.MSBuild.xunit"/>
 
   <Target Name="Test">
     <xunit Assembly="TVDB.Test\bin\Release\MyTests.dll" />
-  </Target>
-  
+  </Target>-->
+  <!--END Custom Steps-->
 </Project>
