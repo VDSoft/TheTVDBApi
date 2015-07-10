@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="2454BEFD-7476-419C-B395-98EF1499E75D" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        Version 1.1.1.0 was released on 10.07.2015.
+      </para>
+    </introduction>
+
+    <section>
+      <title>Changes in this Release</title>
+      <content>
+
+        <list class="bullet">
+          <listItem>
+            <para>Added opertunity to define a path for the downloaded files.</para>
+          </listItem>
+          <listItem>
+            <para>Added the fields:</para>
+            <list class="ordered">
+              <listItem>
+                <para>airsafter_season</para>
+              </listItem>
+              <listItem>
+                <para>airsbefore_episode</para>
+            </listItem>
+              <listItem>
+                <para>airsbefore_season</para>
+              </listItem>
+            </list>
+          </listItem>
+          <listItem>
+            <para>Added opertunity to define a path for the downloaded files.</para>
+          </listItem>
+          <listItem>
+            <para>Fixed bug for null values in the xml files.</para>
+          </listItem>
+        </list>
+
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="0cca77ae-b502-4945-bd79-2562b85dfc9e" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<topic id="276b0796-3ec2-4006-9b76-922321456505" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>This api helps you to access the data easy by just requesting what series you are looking for the api than gets all information about the series and provides them to the developer as a simple object structure.</para>
+		</introduction>
+
+		<section>
+			<title>Documentation for TheTVDBApi library</title>
+			<content>
+				<para>This is a .NET api to access the data provided by the TheTVDB database. The api can access the following information for a series.</para>
+
+				<list class="bullet">
+					<listItem>
+						<para>Mirrors - All mirrors that are known to the TheTVDB database.</para>
+					</listItem>
+
+					<listItem>
+						<para>Languages - All languages that are available at a mirror.</para>
+					</listItem>
+
+					<listItem>
+						<para>Series details - Details about the series itself like Name, Ids, Air Date, Actors, etc.</para>
+					</listItem>
+
+					<listItem>
+						<para>Episodes - Details about a specific episode like Name, Number, Air Date, etc.</para>
+					</listItem>
+
+          <listItem>
+            <para>Actors - Information about the actors and who he plays in the series.</para>
+          </listItem>
+
+          <listItem>
+            <para>Images - Images about a series, seasons and fan arts.</para>
+          </listItem>
+				</list>
+
+				<para>See the <legacyBold>Conceptual Content</legacyBold> topics in the Sandcastle Help File Builder's
+help file for more information.  See the <legacyBold> Sandcastle MAML Guide</legacyBold> for details on Microsoft
+Assistance Markup Language (MAML) which is used to create these topics.</para>
+			</content>
+		</section>
+
+		<relatedTopics>
+			<link xlink:href="0cca77ae-b502-4945-bd79-2562b85dfc9e" />
+		</relatedTopics>
+	</developerConceptualDocument>
+</topic>

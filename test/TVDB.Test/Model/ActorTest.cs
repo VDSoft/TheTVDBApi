@@ -1,15 +1,14 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TVDB.Model;
+using Xunit;
 
 namespace TVDB.Test.Model
 {
-    [TestClass]
     public class ActorTest
     {
         #region deserialize test
 
-        [TestMethod]
+        [Fact]
         public void DeserializeTestSuccessfull()
         {
             string xmlContent = 
@@ -23,19 +22,21 @@ namespace TVDB.Test.Model
             Actor target = new Actor();
             target.Deserialize(actorNode);
 
-            Assert.AreEqual(79415, target.Id);
-            Assert.AreEqual("actors/79415.jpg", target.ImagePath);
-            Assert.AreEqual("Nathan Fillion", target.Name);
-            Assert.AreEqual("Richard Castle", target.Role);
-            Assert.AreEqual(0, target.SortOrder);
+            Assert.Equal(79415, target.Id);
+            Assert.Equal("actors/79415.jpg", target.ImagePath);
+            Assert.Equal("Nathan Fillion", target.Name);
+            Assert.Equal("Richard Castle", target.Role);
+            Assert.Equal(0, target.SortOrder);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
         public void DeserializeTestFailedNoNode()
         {
             Actor target = new Actor();
-            target.Deserialize(null);
+			ArgumentNullException expected = new ArgumentNullException("node", "Provided node must not be null.");
+			ArgumentNullException actual = Assert.Throws<ArgumentNullException>(() => target.Deserialize(null));
+
+			Assert.Equal(expected.Message, actual.Message);
         }
 
 

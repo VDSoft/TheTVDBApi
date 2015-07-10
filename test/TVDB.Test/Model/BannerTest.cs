@@ -1,13 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TVDB.Model;
+using Xunit;
 
 namespace TVDB.Test.Model
 {
-	[TestClass]
+	
 	public class BannerTest
 	{
-		[TestMethod]
+		[Fact]
 		public void DeserializeBannerTestSuccessfull()
 		{
 			string content =
@@ -22,26 +22,28 @@ namespace TVDB.Test.Model
 			Banner target = new Banner();
 			target.Deserialize(bannerNode);
 
-			Assert.AreEqual(605881, target.Id);
-			Assert.AreEqual("fanart/original/83462-18.jpg", target.BannerPath);
-			Assert.AreEqual(BannerTyp.fanart, target.Type);
-			Assert.AreEqual("1920x1080", target.Dimension);
-			Assert.AreEqual("|217,177,118|59,40,68|214,192,205|", target.Color);
-			Assert.AreEqual("de", target.Language);
-			Assert.AreEqual(9.6765, target.Rating);
-			Assert.AreEqual(34, target.RatingCount);
-			Assert.AreEqual(false, target.SeriesName);
-			Assert.AreEqual("_cache/fanart/original/83462-18.jpg", target.ThumbnailPath);
-			Assert.AreEqual("fanart/vignette/83462-18.jpg", target.VignettePath);
+			Assert.Equal(605881, target.Id);
+			Assert.Equal("fanart/original/83462-18.jpg", target.BannerPath);
+			Assert.Equal(BannerTyp.fanart, target.Type);
+			Assert.Equal("1920x1080", target.Dimension);
+			Assert.Equal("|217,177,118|59,40,68|214,192,205|", target.Color);
+			Assert.Equal("de", target.Language);
+			Assert.Equal(9.6765, target.Rating);
+			Assert.Equal(34, target.RatingCount);
+			Assert.Equal(false, target.SeriesName);
+			Assert.Equal("_cache/fanart/original/83462-18.jpg", target.ThumbnailPath);
+			Assert.Equal("fanart/vignette/83462-18.jpg", target.VignettePath);
 		}
-		
-		[TestMethod]
-		[ExpectedException(typeof(ArgumentNullException))]
+
+		[Fact]
 		public void DeserializeBannerTestFailedNoNode()
 		{
 			Banner target = new Banner();
 
-			target.Deserialize(null);
+			ArgumentNullException expected = new ArgumentNullException("node", "Provided node must not be null.");
+			ArgumentNullException actual = Assert.Throws<ArgumentNullException>(() => target.Deserialize(null));
+
+			Assert.Equal(expected.Message, actual.Message);
 		}
 	}
 }

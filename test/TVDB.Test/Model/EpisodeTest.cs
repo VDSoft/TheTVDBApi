@@ -1,15 +1,14 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TVDB.Model;
+using Xunit;
 
 namespace TVDB.Test.Model
 {
-    [TestClass]
     public class EpisodeTest
     {
         #region Initializer tests
 
-        [TestMethod]
+        [Fact]
         public void InitializerTestSuccessfull()
         {
             Episode target = new Episode();
@@ -17,7 +16,7 @@ namespace TVDB.Test.Model
             target.Writer = "Josh Schwartz|Chris Fedak";
 
             string expectedGuestStars = "Mieko Hillman, Kristine Blackport, Jim Pirri, Diana Gitelman, Mel Fair, Lynn A. Henderson, Odessa Rae, Jordan Potter, Tasha Campbell, Dale Dye, Matthew Bomer, Bruno Amato, Nicolas Pajon, Wendy Makkena";
-            string expectedWriters = "Josh Schwartz, Chris Fedak";
+            string expectedWriters = "Josh Schwartz, Chris Fedak***";
 
             Type targetType = typeof(Episode);
             var methode = targetType.GetMethod("Initialize", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -26,11 +25,11 @@ namespace TVDB.Test.Model
             string actualGuestStars = target.GuestStars;
             string actualWriters = target.Writer;
 
-            Assert.AreEqual(expectedGuestStars, actualGuestStars);
-            Assert.AreEqual(expectedWriters, actualWriters);
+            Assert.Equal(expectedGuestStars, actualGuestStars);
+            Assert.Equal(expectedWriters, actualWriters);
         }
 
-        [TestMethod]
+        [Fact]
         public void InitializerTestSuccessfullGuestStarsNull()
         {
             Episode target = new Episode();
@@ -47,11 +46,11 @@ namespace TVDB.Test.Model
             string actualGuestStars = target.GuestStars;
             string actualWriters = target.Writer;
 
-            Assert.AreEqual(expectedGuestStars, actualGuestStars);
-            Assert.AreEqual(expectedWriters, actualWriters);
+            Assert.Equal(expectedGuestStars, actualGuestStars);
+            Assert.Equal(expectedWriters, actualWriters);
         }
 
-        [TestMethod]
+        [Fact]
         public void InitializerTestSuccessfullWriterNull()
         {
             Episode target = new Episode();
@@ -68,15 +67,15 @@ namespace TVDB.Test.Model
             string actualGuestStars = target.GuestStars;
             string actualWriters = target.Writer;
 
-            Assert.AreEqual(expectedGuestStars, actualGuestStars);
-            Assert.AreEqual(expectedWriters, actualWriters);
+            Assert.Equal(expectedGuestStars, actualGuestStars);
+			Assert.Equal(expectedWriters, actualWriters);
         }
 
         #endregion
 
         #region Deserialize test
 
-        [TestMethod]
+        [Fact]
         public void DeserializeSuccessfull()
         {
             string xmlContent =
@@ -94,51 +93,54 @@ namespace TVDB.Test.Model
             string expectedOverview = "Der Anwalt Marvin Fisk und die Sozialarbeiterin Alison Tisdale werden ermordet aufgefunden. Detective Kate Beckett fällt auf, dass es eine Verbindung zwischen den Morden gibt: Es handelt sich um Verbrechen aus Romanen des Kriminalautors Rick Castle. Dieser fühlt sich durch den Nachahmer geschmeichelt, und willigt ein, der Polizei bei den Ermittlungen zu helfen. Beckett ist davon alles andere als begeistert, doch schon bald erweist sich Castles Hilfe als unentbehrlich ...";
             string expectedWriter = "Andrew W. Marlowe";
 
-            Assert.AreEqual(398671, target.Id);
-            Assert.AreEqual(1.0, target.CombinedEpisodeNumber);
-            Assert.AreEqual(1, target.CombinedSeason);
-            Assert.AreEqual(0, target.DVDChapter);
-            Assert.AreEqual(0, target.DVDDiscId);
-            Assert.AreEqual(1.0, target.DVDEpisodeNumber);
-            Assert.AreEqual(1, target.DVDSeason);
-            Assert.AreEqual("Rob Bowman", target.Director);
-            Assert.AreEqual(2, target.EpImageFlag);
-            Assert.AreEqual("Blumen für Dein Grab", target.Name);
-            Assert.AreEqual(1, target.Number);
-            Assert.AreEqual(new DateTime(2009, 3, 9, 0, 0, 0), target.FirstAired);
-            Assert.AreEqual(expectedGuestStars, target.GuestStars);
-            Assert.AreEqual("tt1303973", target.IMDBId);
-            Assert.AreEqual("de", target.Language);
-            Assert.AreEqual(expectedOverview, target.Overview);
-            Assert.AreEqual(101, target.ProductionCode);
-            Assert.AreEqual(7.9, target.Rating);
-            Assert.AreEqual(1, target.SeasonNumber);
-            Assert.AreEqual(expectedWriter, target.Writer);
-            Assert.AreEqual(1, target.AbsoluteNumber);
-            Assert.AreEqual("episodes/83462/398671.jpg", target.PictureFilename);
-            Assert.AreEqual(1376283694, target.LastUpdated);
-            Assert.AreEqual(36354, target.SeasonId);
-            Assert.AreEqual(83462, target.SeriesId);
-            Assert.AreEqual(125, target.RatingCount);
-            Assert.AreEqual(0, target.Thumbadded);
-            Assert.AreEqual(225, target.ThumbHeight);
-            Assert.AreEqual(400, target.ThumbWidth);
-            Assert.AreEqual(true, target.IsTMSExport);
-            Assert.AreEqual(false, target.IsTMSReviewBlurry);
-            Assert.AreEqual(0, target.TMSReviewById);
-            Assert.AreEqual(false, target.IsTMSReviewDark);
-            Assert.AreEqual(DateTime.MinValue, target.TMSReviewDate);
-            Assert.AreEqual(0, target.TMSReviewLogoId);
-            Assert.AreEqual(0, target.TMSReviewOther);
-            Assert.AreEqual(false, target.IsTMSReviewUnsure);
+            Assert.Equal(398671, target.Id);
+            Assert.Equal(1.0, target.CombinedEpisodeNumber);
+            Assert.Equal(1, target.CombinedSeason);
+            Assert.Equal(0, target.DVDChapter);
+            Assert.Equal(0, target.DVDDiscId);
+            Assert.Equal(1.0, target.DVDEpisodeNumber);
+            Assert.Equal(1, target.DVDSeason);
+            Assert.Equal("Rob Bowman", target.Director);
+            Assert.Equal(2, target.EpImageFlag);
+            Assert.Equal("Blumen für Dein Grab", target.Name);
+            Assert.Equal(1, target.Number);
+            Assert.Equal(new DateTime(2009, 3, 9, 0, 0, 0), target.FirstAired);
+            Assert.Equal(expectedGuestStars, target.GuestStars);
+            Assert.Equal("tt1303973", target.IMDBId);
+            Assert.Equal("de", target.Language);
+            Assert.Equal(expectedOverview, target.Overview);
+            Assert.Equal(101, target.ProductionCode);
+            Assert.Equal(7.9, target.Rating);
+            Assert.Equal(1, target.SeasonNumber);
+            Assert.Equal(expectedWriter, target.Writer);
+            Assert.Equal(1, target.AbsoluteNumber);
+            Assert.Equal("episodes/83462/398671.jpg", target.PictureFilename);
+            Assert.Equal(1376283694, target.LastUpdated);
+            Assert.Equal(36354, target.SeasonId);
+            Assert.Equal(83462, target.SeriesId);
+            Assert.Equal(125, target.RatingCount);
+            Assert.Equal(0, target.Thumbadded);
+            Assert.Equal(225, target.ThumbHeight);
+            Assert.Equal(400, target.ThumbWidth);
+            Assert.Equal(true, target.IsTMSExport);
+            Assert.Equal(false, target.IsTMSReviewBlurry);
+            Assert.Equal(0, target.TMSReviewById);
+            Assert.Equal(false, target.IsTMSReviewDark);
+            Assert.Equal(DateTime.MinValue, target.TMSReviewDate);
+            Assert.Equal(0, target.TMSReviewLogoId);
+            Assert.Equal(0, target.TMSReviewOther);
+            Assert.Equal(false, target.IsTMSReviewUnsure);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void DesereializeFailedNoNode()
         {
             Episode target = new Episode();
-            target.Deserialize(null);
+
+			ArgumentNullException expected = new ArgumentNullException("node", "Provided node must not be null.");
+			ArgumentNullException actual = Assert.Throws<ArgumentNullException>(() => target.Deserialize(null));
+
+			Assert.Equal(expected.Message, actual.Message);
         }
 
         #endregion

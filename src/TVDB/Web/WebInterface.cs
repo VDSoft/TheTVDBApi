@@ -26,13 +26,16 @@ namespace TVDB.Web
 		/// </summary>
 		private readonly string APIKey = null;
 
-		/// <summary>
-		/// Path of the full series zip file.
-		/// </summary>
-		private const string LoadedSeriesPath = "loaded.zip";
+	    /// <summary>
+	    /// Path of the full series zip file.
+	    /// </summary>
+	    private string loadedSeriesPath
+	    {
+	        get { return Path.Combine(this.FileDirectory, "loaded.zip"); }
+	    }
 
-		/// <summary>
-		/// Default mirror to connect to the api.
+	    /// <summary>
+		/// Default mirror site to connect to the api.
 		/// </summary>
 		private Mirror defaultMirror = null;
 
@@ -53,9 +56,25 @@ namespace TVDB.Web
 		/// </summary>
 		/// <param name="apiKey">API key obtained from TheTVDB.com to access the XML api.</param>
 		public WebInterface(string apiKey)
+			:this(apiKey, string.Empty)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="WebInterface"/> class.
+		/// </summary>
+		/// <param name="apiKey">API key obtained from TheTVDB.com to access the XML api.</param>
+		/// <param name="fileDirectory">Directory where all loaded files will be stored.</param>
+		public WebInterface(string apiKey, string fileDirectory)
 		{
 			this.APIKey = apiKey;
+			this.FileDirectory = fileDirectory;
 		}
+
+		/// <summary>
+		/// Directory for writing zip and extracted files
+		/// </summary>
+		public string FileDirectory { get; set; }
 		
 		/// <summary>
 		/// Get all available mirrors.
@@ -94,7 +113,7 @@ namespace TVDB.Web
 
 			try
 			{
-				 result = this.client.DownloadData(string.Format(url, this.APIKey));
+				 result = await this.client.DownloadDataTaskAsync(string.Format(url, this.APIKey));
 			}
 			catch (Exception ex)
 			{
@@ -207,7 +226,7 @@ namespace TVDB.Web
 
 			string url = "{0}/api/{1}/languages.xml";
 
-			byte[] result = this.client.DownloadData(string.Format(url, mirror.Address, APIKey));
+			byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, APIKey));
 			MemoryStream resultStream = new MemoryStream(result);
 
 			XmlDocument doc = new XmlDocument();
@@ -272,7 +291,7 @@ namespace TVDB.Web
 				return null;
 			}
 
-			return this.GetSeriesByName(name, "en", mirror).Result;
+			return await this.GetSeriesByName(name, "en", mirror);
 		}
 
 		/// <summary>
@@ -325,7 +344,7 @@ namespace TVDB.Web
 
 			string url = "{0}/api/GetSeries.php?seriesname={1}&language={2}";
 
-			byte[] result = this.client.DownloadData(string.Format(url, mirror.Address, name, languageAbbreviation));
+			byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, name, languageAbbreviation));
 			MemoryStream resultStream = new MemoryStream(result);
 
 			XmlDocument doc = new XmlDocument();
@@ -457,7 +476,7 @@ namespace TVDB.Web
 
 			string url = "{0}/api/GetSeriesByRemoteID.php?imdbid={1}&language={2}&zap2it={3}";
 
-			byte[] result = this.client.DownloadData(string.Format(url, mirror.Address, imdbId, languageAbbreviation, zap2Id));
+			byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, imdbId, languageAbbreviation, zap2Id));
 			MemoryStream resultStream = new MemoryStream(result);
 
 			XmlDocument doc = new XmlDocument();
@@ -571,17 +590,17 @@ namespace TVDB.Web
 			}
 
 			string url = "{0}/api/{1}/series/{2}/all/{3}.zip";
-			byte[] result = this.client.DownloadData(string.Format(url, mirror.Address, this.APIKey, id, languageAbbreviation));
+			byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, this.APIKey, id, languageAbbreviation));
 
 			// store the zip file.
-			using (FileStream zipFile = new FileStream(LoadedSeriesPath, FileMode.Create, FileAccess.Write))
+			using (FileStream zipFile = new FileStream(this.loadedSeriesPath, FileMode.Create, FileAccess.Write))
 			{
 				zipFile.Write(result, 0, (int)result.Length);
 				zipFile.Flush();
 				zipFile.Close();
 			}
 
-			DirectoryInfo dirInfo = new DirectoryInfo("extraction");
+		    DirectoryInfo dirInfo = new DirectoryInfo(Path.Combine(FileDirectory, "extraction"));
 			if (!dirInfo.Exists)
 			{
 				dirInfo.Create();
@@ -589,11 +608,11 @@ namespace TVDB.Web
 
 
 			// extract the file.
-			using (ZipArchive archive = ZipFile.OpenRead(LoadedSeriesPath))
+			using (ZipArchive archive = ZipFile.OpenRead(this.loadedSeriesPath))
 			{
 				foreach (ZipArchiveEntry entry in archive.Entries)
 				{
-					entry.ExtractToFile(Path.Combine(dirInfo.Name, entry.Name), true);
+					entry.ExtractToFile(Path.Combine(dirInfo.FullName, entry.Name), true);
 				}
 			}
 

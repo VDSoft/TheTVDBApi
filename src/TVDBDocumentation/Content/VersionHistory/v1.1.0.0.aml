@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="dd0d128b-d53f-4feb-9ed4-ac73bddc02fb" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        Version 1.1.0.0 was released on 04.02.2015.
+      </para>
+    </introduction>
+
+    <section>
+      <title>Changes in this Release</title>
+      <content>
+
+        <list class="bullet">
+          <listItem>
+            <para>Created interface definition to use the web interface.</para>
+          </listItem>
+        </list>
+
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="0cca77ae-b502-4945-bd79-2562b85dfc9e" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

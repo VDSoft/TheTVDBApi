@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TVDB.Model;
+using Xunit;
 
 namespace TVDB.Test.Model
 {
-	[TestClass]
 	public class SeriesDetailsTest
 	{
 		/// <summary>
@@ -14,36 +13,43 @@ namespace TVDB.Test.Model
 
 		#region Constructor tests
 
-		[TestMethod]
+		[Fact]
 		public void CosntructorTestSuccessfull()
 		{
 			SeriesDetails target = new SeriesDetails(this.testExtractionPath, "en");
 
-			Assert.AreEqual("en", target.Language);
-			Assert.IsNotNull(target.Actors);
-			Assert.IsNotNull(target.Banners);
-			Assert.IsNotNull(target.Series);
+			Assert.Equal("en", target.Language);
+			Assert.NotNull(target.Actors);
+			Assert.NotNull(target.Banners);
+			Assert.NotNull(target.Series);
 		}
 
-		[TestMethod]
-		[ExpectedException(typeof(System.IO.DirectoryNotFoundException))]
+		[Fact]
 		public void ConstructorTestFailedDirectroyDoesNotExist()
 		{
-			SeriesDetails target = new SeriesDetails(@"Some\Director\", "en");
+			string fakePath = @"Some\Director\";
+
+			System.IO.DirectoryNotFoundException expected = new System.IO.DirectoryNotFoundException(string.Format("The directory \"{0}\" could not be found.", fakePath));
+			System.IO.DirectoryNotFoundException actual = Assert.Throws<System.IO.DirectoryNotFoundException>(() => new SeriesDetails(fakePath, "en"));
+
+			Assert.Equal(expected.Message, actual.Message);
 		}
 
-		[TestMethod]
-		[ExpectedException(typeof(ArgumentNullException))]
+		[Fact]
+		
 		public void ConstructorTestFailedNoLanguage()
 		{
-			SeriesDetails target = new SeriesDetails(this.testExtractionPath, string.Empty);
+			ArgumentNullException expected = new ArgumentNullException("language", "Provided language must not be null or empty.");
+			ArgumentNullException actual = Assert.Throws<ArgumentNullException>(() => new SeriesDetails(this.testExtractionPath, string.Empty));
+
+			Assert.Equal(expected.Message, actual.Message);
 		}
 
 		#endregion
 
 		#region Deserialize tests
 
-		[TestMethod]
+		[Fact]
 		public void DeserializeActorsTest()
 		{
 			SeriesDetails target = new SeriesDetails(this.testExtractionPath, "en");
@@ -52,11 +58,11 @@ namespace TVDB.Test.Model
 
 			method.Invoke(target, new object[0]);
 
-			Assert.IsNotNull(target.Actors);
-			Assert.AreEqual(9, target.Actors.Count);
+			Assert.NotNull(target.Actors);
+			Assert.Equal(9, target.Actors.Count);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void DeserializeBannersTest()
 		{
 			SeriesDetails target = new SeriesDetails(this.testExtractionPath, "en");
@@ -65,11 +71,11 @@ namespace TVDB.Test.Model
 
 			method.Invoke(target, new object[0]);
 
-			Assert.IsNotNull(target.Banners);
-			Assert.AreEqual(125, target.Banners.Count);
+			Assert.NotNull(target.Banners);
+			Assert.Equal(125, target.Banners.Count);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void DeserializeSeriesTest()
 		{
 			SeriesDetails target = new SeriesDetails(this.testExtractionPath, "en");
@@ -78,17 +84,17 @@ namespace TVDB.Test.Model
 
 			method.Invoke(target, new object[0]);
 
-			Assert.IsNotNull(target.Series);
-			Assert.AreEqual(83462, target.Series.Id);
-			Assert.AreEqual("Castle (2009)", target.Series.Name);
-			Assert.AreEqual(121, target.Series.Episodes.Count);
+			Assert.NotNull(target.Series);
+			Assert.Equal(83462, target.Series.Id);
+			Assert.Equal("Castle (2009)", target.Series.Name);
+			Assert.Equal(121, target.Series.Episodes.Count);
 		}
 
 		#endregion
 
 		#region Dispose tests
 
-		[TestMethod]
+		[Fact]
 		public void DisposeTestSuccessfull()
 		{
 			SeriesDetails target = new SeriesDetails(this.testExtractionPath, "en");
@@ -98,10 +104,10 @@ namespace TVDB.Test.Model
 
 			target.Dispose();
 
-			Assert.AreEqual(string.Empty, target.Language);
-			Assert.IsNull(target.Actors);
-			Assert.IsNull(target.Banners);
-			Assert.IsNull(target.Series);
+			Assert.Equal(string.Empty, target.Language);
+			Assert.Null(target.Actors);
+			Assert.Null(target.Banners);
+			Assert.Null(target.Series);
 		}
 
 		#endregion

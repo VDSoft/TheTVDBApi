@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="eb9fa2b1-1ed7-46f1-b32c-c8ada916f27b" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>
+        Version 1.0.0.0 was released on 28.12.2014.
+      </para>
+		</introduction>
+
+		<section>
+			<title>Changes in this Release</title>
+			<content>
+
+				<list class="bullet">
+					<listItem>
+						<para>Get information for your series.</para>
+					</listItem>
+          <listItem>
+            <para>Get pictures for the series, season and fan arts of the series.</para>
+          </listItem>
+          <listItem>
+            <para>Get the main actors of a series.</para>
+          </listItem>
+
+				</list>
+
+			</content>
+		</section>
+
+		<relatedTopics>
+			<link xlink:href="0cca77ae-b502-4945-bd79-2562b85dfc9e" />
+		</relatedTopics>
+
+	</developerConceptualDocument>
+</topic>

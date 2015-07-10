@@ -841,6 +841,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("SeriesID", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					int result = 0;
 					int.TryParse(currentNode.InnerText, out result);
 					this.SeriesId = result;
@@ -868,16 +873,31 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("FirstAired", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					this.FirstAired = DateTime.Parse(currentNode.InnerText);
 					continue;
 				}
 				else if (currentNode.Name.Equals("IMDB_ID", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					this.IMDBId = currentNode.InnerText;
 					continue;
 				}
 				else if (currentNode.Name.Equals("zap2it_id", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					this.Zap2ItId = currentNode.InnerText;
 					continue;
 				}
@@ -888,11 +908,21 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Airs_DayOfWeek", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					this.AirsDayOfWeel = currentNode.InnerText;
 					continue;
 				}
 				else if (currentNode.Name.Equals("Airs_Time", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					this.AirsTime = currentNode.InnerText;
 					continue;
 				}
@@ -903,11 +933,21 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Genre", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					this.Genre = currentNode.InnerText;
 					continue;
 				}
 				else if (currentNode.Name.Equals("Network", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					this.Network = currentNode.InnerText;
 				}
 				else if (currentNode.Name.Equals("NetworkID", StringComparison.OrdinalIgnoreCase))
@@ -919,6 +959,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Rating", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					double result = 0.0;
 					double.TryParse(currentNode.InnerText, System.Globalization.NumberStyles.Number, cultureInfo, out result);
 					this.Rating = result;
@@ -933,6 +978,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Runtime", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					double result = 0.0;
 					double.TryParse(currentNode.InnerText, System.Globalization.NumberStyles.Number, cultureInfo, out result);
 					this.Runtime = result;
@@ -940,6 +990,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Status", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					this.Status = currentNode.InnerText;
 					continue;
 				}
@@ -967,6 +1022,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("lastupdated", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					long result = 0;
 					long.TryParse(currentNode.InnerText, out result);
 					this.LastUpdated = result;
