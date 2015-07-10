@@ -8,6 +8,7 @@ namespace TVDB.Model
 {
     using System;
     using System.ComponentModel;
+    using System.Runtime.CompilerServices;
 
     /// <summary>
     /// Base for the elements of a series.
@@ -215,7 +216,7 @@ namespace TVDB.Model
         /// Raises the <see cref="PropertyChanged"/> event.
         /// </summary>
         /// <param name="propertyName">Name of the property that changed its value.</param>
-        protected void RaisePropertyChanged(string propertyName)
+        protected void RaisePropertyChanged([CallerMemberName]string propertyName = "")
         {
             if (this.PropertyChanged != null)
             {

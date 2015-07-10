@@ -324,6 +324,21 @@ namespace TVDB.Model
 		/// </summary>
 		private bool isTMSReviewUnsure = false;
 
+        /// <summary>
+        /// Airs after season name.
+        /// </summary>
+        private string airsAfterSeason = null;
+
+        /// <summary>
+        /// Number of the season this episode airs before.
+        /// </summary>
+        private int airsBeforeSeason = 0;
+
+        /// <summary>
+        /// Number or episode this one airs before.
+        /// </summary>
+        private int airsBeforeEpisode = 0;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Episode"/> class.
 		/// </summary>
@@ -1014,6 +1029,69 @@ namespace TVDB.Model
 			}
 		}
 
+        /// <summary>
+        /// Gets or sets the name of the season this episode airs after.
+        /// </summary>
+        public string AirsAfterSeason
+        {
+            get
+            {
+                return this.airsAfterSeason;
+            }
+            set
+            {
+                if (value == this.airsAfterSeason)
+                {
+                    return;
+                }
+
+                this.airsAfterSeason = value;
+                this.RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the number of hte season this episode airs before.
+        /// </summary>
+        public int AirsBeforeSeason
+        {
+            get
+            {
+                return this.airsBeforeSeason;
+            }
+            set
+            {
+                if (value == this.airsBeforeSeason)
+                {
+                    return;
+                }
+
+                this.airsBeforeSeason = value;
+                this.RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the number of episode this one airs before.
+        /// </summary>
+        public int AirsBeforeEpisode
+        {
+            get
+            {
+                return this.airsBeforeEpisode;
+            }
+            set
+            {
+                if (value == this.airsBeforeEpisode)
+                {
+                    return;
+                }
+
+                this.airsBeforeEpisode = value;
+                this.RaisePropertyChanged();
+            }
+        }
+
 		/// <summary>
 		/// Deserializes the provided xml node.
 		/// </summary>
@@ -1107,6 +1185,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("DVD_chapter", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					int result = 0;
 					int.TryParse(currentNode.InnerText, out result);
 					this.DVDChapter = result;
@@ -1114,6 +1197,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("DVD_discid", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					int result = 0;
 					int.TryParse(currentNode.InnerText, out result);
 					this.DVDDiscId = result;
@@ -1121,6 +1209,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("DVD_episodenumber", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					double result = 0;
 					double.TryParse(currentNode.InnerText, System.Globalization.NumberStyles.Number, cultureInfo, out result);
 					this.DVDEpisodeNumber = result;
@@ -1128,6 +1221,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("DVD_season", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					int result = 0;
 					int.TryParse(currentNode.InnerText, out result);
 					this.DVDSeason = result;
@@ -1140,6 +1238,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("EpImgFlag", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					int result = 0;
 					int.TryParse(currentNode.InnerText, out result);
 					this.EpImageFlag = result;
@@ -1174,6 +1277,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("IMDB_ID", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					this.IMDBId = currentNode.InnerText;
 					continue;
 				}
@@ -1189,6 +1297,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("ProductionCode", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					int result = 0;
 					int.TryParse(currentNode.InnerText, out result);
 					this.ProductionCode = result;
@@ -1221,6 +1334,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("absolute_number", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					int result = 0;
 					int.TryParse(currentNode.InnerText, out result);
 					this.AbsoluteNumber = result;
@@ -1233,6 +1351,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("lastupdated", StringComparison.OrdinalIgnoreCase))
 				{
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
 					long result = 0;
 					long.TryParse(currentNode.InnerText, out result);
 					this.LastUpdated = result;
@@ -1329,6 +1452,40 @@ namespace TVDB.Model
 					this.IsTMSReviewUnsure = result > 0 ? true : false;
 					continue;
 				}
+                else if (currentNode.Name.Equals("airsafter_season", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
+                    this.AirsAfterSeason = currentNode.InnerText;
+                    continue;
+                }
+                else if (currentNode.Name.Equals("airsbefore_season", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
+                    int result = 0;
+                    int.TryParse(currentNode.InnerText, out result);
+                    this.AirsBeforeSeason = result;
+                    continue;
+                }
+                else if (currentNode.Name.Equals("airsbefore_episode", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        continue;
+                    }
+
+                    int result = 0;
+                    int.TryParse(currentNode.InnerText, out result);
+                    this.AirsBeforeEpisode = result;
+                    continue;
+                }
 			}
 
 			this.Initialize();
