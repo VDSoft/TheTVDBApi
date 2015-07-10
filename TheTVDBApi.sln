@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D1F617
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "TVDBDocumentation", "src\TVDBDocumentation\TVDBDocumentation.shfbproj", "{B5523BE6-30DC-427F-A037-4654A1F8C488}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,13 @@ Global
 		{63DFCD1F-804D-471A-9986-E98A8DE5EDFC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{63DFCD1F-804D-471A-9986-E98A8DE5EDFC}.Release|ARM.ActiveCfg = Release|Any CPU
 		{63DFCD1F-804D-471A-9986-E98A8DE5EDFC}.Release|x86.ActiveCfg = Release|Any CPU
+		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

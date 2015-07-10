@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="0cca77ae-b502-4945-bd79-2562b85dfc9e" revisionNumber="1">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<introduction>
+			<para>The topics in this section describe the various changes made to the TheTVDBApi over the life of the project.</para>
+		</introduction>
+
+		<section>
+			<title>Version History</title>
+			<content>
+				<para>Select a version below to see a description of its changes.</para>
+
+				<list class="bullet">
+					<listItem>
+						<para>
+              <link xlink:href="eb9fa2b1-1ed7-46f1-b32c-c8ada916f27b" />
+            </para>
+					</listItem>
+
+					<listItem>
+						<para>
+              <link xlink:href="dd0d128b-d53f-4feb-9ed4-ac73bddc02fb"/>
+            </para>
+					</listItem>
+          
+          <listItem>
+            <para>
+              <link xlink:href="2454BEFD-7476-419C-B395-98EF1499E75D"/>
+            </para>
+          </listItem>
+
+				</list>
+
+			</content>
+		</section>
+
+		<relatedTopics>
+			<link xlink:href="276b0796-3ec2-4006-9b76-922321456505" />
+		</relatedTopics>
+
+	</developerConceptualDocument>
+</topic>
