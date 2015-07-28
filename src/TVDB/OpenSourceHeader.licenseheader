@@ -1,0 +1,21 @@
+extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+// -----------------------------------------------------------------------
+// <copyright company="Christoph van der Fecht - VDsoft">
+// This code can be used in commercial, free and open source projects.
+// </copyright>
+// -----------------------------------------------------------------------
+
+extensions: .aspx .ascx
+<%-- 
+<copyright company="Christoph van der Fecht - VDsoft">
+This code can be used in commercial, free and open source projects.
+</copyright>
+--%>
+
+extensions:  .xml .config .xsd .xaml
+<!--
+<copyright company="Christoph van der Fecht - VDsoft">
+This code can be used in commercial, free and open source projects.
+</copyright>
+-->

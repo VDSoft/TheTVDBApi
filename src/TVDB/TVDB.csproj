@@ -72,12 +72,10 @@
     <Compile Include="Web\WebInterface.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EventArguments\" />
+    <Folder Include="DataLayer\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\OpenSourceHeader.licenseheader">
-      <Link>OpenSourceHeader.licenseheader</Link>
-    </None>
+    <None Include="OpenSourceHeader.licenseheader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -83,6 +83,31 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\TVDB\Model\Actor.cs">
+      <Link>Model\Actor.cs</Link>
+    </Compile>
+    <Compile Include="..\TVDB\Model\Banner.cs">
+      <Link>Model\Banner.cs</Link>
+    </Compile>
+    <Compile Include="..\TVDB\Model\Episode.cs">
+      <Link>Model\Episode.cs</Link>
+    </Compile>
+    <Compile Include="..\TVDB\Model\Language.cs">
+      <Link>Model\Language.cs</Link>
+    </Compile>
+    <Compile Include="..\TVDB\Model\Mirror.cs">
+      <Link>Model\Mirror.cs</Link>
+    </Compile>
+    <Compile Include="..\TVDB\Model\Series.cs">
+      <Link>Model\Series.cs</Link>
+    </Compile>
+    <Compile Include="..\TVDB\Model\SeriesDetails.cs">
+      <Link>Model\SeriesDetails.cs</Link>
+    </Compile>
+    <Compile Include="..\TVDB\Model\SeriesElement.cs">
+      <Link>Model\SeriesElement.cs</Link>
+    </Compile>
+    <Compile Include="Interfaces\IXmlSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +118,7 @@
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.28\lib\wpa81\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

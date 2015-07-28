@@ -332,12 +332,12 @@ namespace TVDB.Model
         /// <summary>
         /// Number of the season this episode airs before.
         /// </summary>
-        private int airsBeforeSeason = 0;
+        private int airsBeforeSeason = -1;
 
         /// <summary>
         /// Number or episode this one airs before.
         /// </summary>
-        private int airsBeforeEpisode = 0;
+        private int airsBeforeEpisode = -1;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Episode"/> class.
@@ -1469,7 +1469,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-                    int result = 0;
+                    int result = -1;
                     int.TryParse(currentNode.InnerText, out result);
                     this.AirsBeforeSeason = result;
                     continue;
@@ -1481,7 +1481,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-                    int result = 0;
+                    int result = -1;
                     int.TryParse(currentNode.InnerText, out result);
                     this.AirsBeforeEpisode = result;
                     continue;

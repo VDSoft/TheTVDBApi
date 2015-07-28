@@ -16,13 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D1F617
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVDB.WindowsPhone", "src\TVDB.WindowsPhone\TVDB.WindowsPhone.csproj", "{D9B4AFC6-572C-4DDE-9998-6D3C97BA20C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVDB.WindowsPhone.Test", "test\TVDB.WindowsPhone.Test\TVDB.WindowsPhone.Test.csproj", "{6BECE701-E334-41E2-9464-F3F95662D799}"
-=======
+EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "TVDBDocumentation", "src\TVDBDocumentation\TVDBDocumentation.shfbproj", "{B5523BE6-30DC-427F-A037-4654A1F8C488}"
->>>>>>> master
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,17 +58,6 @@ Global
 		{63DFCD1F-804D-471A-9986-E98A8DE5EDFC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{63DFCD1F-804D-471A-9986-E98A8DE5EDFC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{63DFCD1F-804D-471A-9986-E98A8DE5EDFC}.Release|x86.ActiveCfg = Release|Any CPU
-<<<<<<< HEAD
-		{A163EBDA-1E5A-48C6-B885-186AEE04216C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A163EBDA-1E5A-48C6-B885-186AEE04216C}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{A163EBDA-1E5A-48C6-B885-186AEE04216C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A163EBDA-1E5A-48C6-B885-186AEE04216C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{A163EBDA-1E5A-48C6-B885-186AEE04216C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A163EBDA-1E5A-48C6-B885-186AEE04216C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A163EBDA-1E5A-48C6-B885-186AEE04216C}.Release|ARM.ActiveCfg = Release|Any CPU
-		{A163EBDA-1E5A-48C6-B885-186AEE04216C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A163EBDA-1E5A-48C6-B885-186AEE04216C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{A163EBDA-1E5A-48C6-B885-186AEE04216C}.Release|x86.ActiveCfg = Release|Any CPU
 		{D9B4AFC6-572C-4DDE-9998-6D3C97BA20C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9B4AFC6-572C-4DDE-9998-6D3C97BA20C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9B4AFC6-572C-4DDE-9998-6D3C97BA20C9}.Debug|ARM.ActiveCfg = Debug|ARM
@@ -107,15 +94,17 @@ Global
 		{6BECE701-E334-41E2-9464-F3F95662D799}.Release|x86.ActiveCfg = Release|x86
 		{6BECE701-E334-41E2-9464-F3F95662D799}.Release|x86.Build.0 = Release|x86
 		{6BECE701-E334-41E2-9464-F3F95662D799}.Release|x86.Deploy.0 = Release|x86
-=======
 		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B5523BE6-30DC-427F-A037-4654A1F8C488}.Release|x86.ActiveCfg = Release|Any CPU
->>>>>>> master
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -27,7 +27,7 @@ namespace TVDB.Test.Model
 		[Fact]
 		public void ConstructorTestFailedDirectroyDoesNotExist()
 		{
-			string fakePath = @"Some\Director\";
+			string fakePath = @"C:\Some\Director\";
 
 			System.IO.DirectoryNotFoundException expected = new System.IO.DirectoryNotFoundException(string.Format("The directory \"{0}\" could not be found.", fakePath));
 			System.IO.DirectoryNotFoundException actual = Assert.Throws<System.IO.DirectoryNotFoundException>(() => new SeriesDetails(fakePath, "en"));
