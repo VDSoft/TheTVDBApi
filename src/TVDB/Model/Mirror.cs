@@ -48,7 +48,7 @@ namespace TVDB.Model
         /// <summary>
         /// Address of the mirror.
         /// </summary>
-        private string address = string.Empty;
+        private string address = null;
 
         /// <summary>
         /// Value indicating whether the mirror provides xml files.
@@ -268,7 +268,10 @@ namespace TVDB.Model
                 }
                 else if (currentNode.Name.Equals("mirrorpath", StringComparison.OrdinalIgnoreCase))
                 {
-                    this.Address = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Address = currentNode.InnerText; 
+                    }
                     continue;
                 }
                 else if (currentNode.Name.Equals("typemask", StringComparison.OrdinalIgnoreCase))

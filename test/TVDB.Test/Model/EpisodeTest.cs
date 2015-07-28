@@ -36,7 +36,7 @@ namespace TVDB.Test.Model
             target.GuestStars = string.Empty;
             target.Writer = "Josh Schwartz|Chris Fedak";
 
-            string expectedGuestStars = string.Empty;
+            string expectedGuestStars = null;
             string expectedWriters = "Josh Schwartz, Chris Fedak";
 
             Type targetType = typeof(Episode);
@@ -58,7 +58,7 @@ namespace TVDB.Test.Model
             target.Writer = string.Empty;
 
             string expectedGuestStars = "Mieko Hillman, Kristine Blackport, Jim Pirri, Diana Gitelman, Mel Fair, Lynn A. Henderson, Odessa Rae, Jordan Potter, Tasha Campbell, Dale Dye, Matthew Bomer, Bruno Amato, Nicolas Pajon, Wendy Makkena";
-            string expectedWriters = string.Empty;
+            string expectedWriters = null;
 
             Type targetType = typeof(Episode);
             var methode = targetType.GetMethod("Initialize", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -130,6 +130,65 @@ namespace TVDB.Test.Model
             Assert.Equal(0, target.TMSReviewLogoId);
             Assert.Equal(0, target.TMSReviewOther);
             Assert.Equal(false, target.IsTMSReviewUnsure);
+        }
+
+        [Fact]
+        public void DeserializeEpisodeWithNoAirsAfter()
+        {
+            string xmlContent =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><Data><Episode><id>181165</id><Combined_episodenumber>1</Combined_episodenumber><Combined_season>0</Combined_season><DVD_chapter></DVD_chapter><DVD_discid></DVD_discid><DVD_episodenumber></DVD_episodenumber><DVD_season></DVD_season><Director></Director><EpImgFlag></EpImgFlag><EpisodeName>Stewie Griffin: The Untold Story (Feature Movie)</EpisodeName><EpisodeNumber>1</EpisodeNumber><FirstAired>2006-05-21</FirstAired><GuestStars></GuestStars><IMDB_ID></IMDB_ID><Language>en</Language><Overview>When Stewie sees a man who looks just like him on TV, he's convinced that he must be his real father. Stewie sets off on a cross-country road trip to find him, but his incredible journey leads to outrageous discoveries.</Overview><ProductionCode></ProductionCode><Rating>7.8</Rating><RatingCount>5</RatingCount><SeasonNumber>0</SeasonNumber><Writer></Writer><absolute_number></absolute_number><airsafter_season></airsafter_season><airsbefore_episode>1</airsbefore_episode><airsbefore_season>5</airsbefore_season><filename>episodes/75978/181165.jpg</filename><lastupdated>1278363452</lastupdated><seasonid>23437</seasonid><seriesid>75978</seriesid><thumb_added></thumb_added><thumb_height>223</thumb_height><thumb_width>300</thumb_width></Episode></Data>";
+            System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+            doc.LoadXml(xmlContent);
+
+            System.Xml.XmlNode dataNode = doc.ChildNodes[1];
+            System.Xml.XmlNode episodeNode = dataNode.ChildNodes[0];
+            Episode target = new Episode();
+            target.Deserialize(episodeNode);
+
+            string expectedGuestStars = null;
+            string expectedOverview = "When Stewie sees a man who looks just like him on TV, he's convinced that he must be his real father. Stewie sets off on a cross-country road trip to find him, but his incredible journey leads to outrageous discoveries.";
+            string expectedWriter = null;
+
+            Assert.Equal(181165, target.Id);
+            Assert.Equal(1.0, target.CombinedEpisodeNumber);
+            Assert.Equal(0, target.CombinedSeason);
+            Assert.Equal(-1, target.DVDChapter);
+            Assert.Equal(-1, target.DVDDiscId);
+            Assert.Equal(-1.0, target.DVDEpisodeNumber);
+            Assert.Equal(-1, target.DVDSeason);
+            Assert.Equal(null, target.Director);
+            Assert.Equal(-1, target.EpImageFlag);
+            Assert.Equal("Stewie Griffin: The Untold Story (Feature Movie)", target.Name);
+            Assert.Equal(1, target.Number);
+            Assert.Equal(new DateTime(2006, 5, 21, 0, 0, 0), target.FirstAired);
+            Assert.Equal(expectedGuestStars, target.GuestStars);
+            Assert.Equal(null, target.IMDBId);
+            Assert.Equal("en", target.Language);
+            Assert.Equal(expectedOverview, target.Overview);
+            Assert.Equal(-1, target.ProductionCode);
+            Assert.Equal(7.8, target.Rating);
+            Assert.Equal(0, target.SeasonNumber);
+            Assert.Equal(expectedWriter, target.Writer);
+            Assert.Equal(-1, target.AbsoluteNumber);
+            Assert.Equal("episodes/75978/181165.jpg", target.PictureFilename);
+            Assert.Equal(1278363452, target.LastUpdated);
+            Assert.Equal(23437, target.SeasonId);
+            Assert.Equal(75978, target.SeriesId);
+            Assert.Equal(5, target.RatingCount);
+            Assert.Equal(0, target.Thumbadded);
+            Assert.Equal(223, target.ThumbHeight);
+            Assert.Equal(300, target.ThumbWidth);
+            Assert.Equal(false, target.IsTMSExport);
+            Assert.Equal(false, target.IsTMSReviewBlurry);
+            Assert.Equal(-1, target.TMSReviewById);
+            Assert.Equal(false, target.IsTMSReviewDark);
+            Assert.Equal(DateTime.MinValue, target.TMSReviewDate);
+            Assert.Equal(-1, target.TMSReviewLogoId);
+            Assert.Equal(-1, target.TMSReviewOther);
+            Assert.Equal(false, target.IsTMSReviewUnsure);
+            Assert.Equal(-1, target.AirsAfterSeason);
+            Assert.Equal(1, target.AirsBeforeEpisode);
+            Assert.Equal(5, target.AirsBeforeSeason);
         }
 
         [Fact]

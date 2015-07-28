@@ -33,7 +33,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// The Language.
 		/// </summary>
-		private string language = string.Empty;
+		private string language = null;
 
 		/// <summary>
 		/// The Actors.
@@ -53,7 +53,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Path of the extracted files.
 		/// </summary>
-		private string extractionPath = string.Empty;
+		private string extractionPath = null;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SeriesDetails"/> class.
@@ -195,8 +195,8 @@ namespace TVDB.Model
 		/// </summary>
 		public void Dispose()
 		{
-			this.language = string.Empty;
-			this.extractionPath = string.Empty;
+			this.language = null;
+			this.extractionPath = null;
 
 			this.actorsDoc = null;
 			this.bannersDoc = null;

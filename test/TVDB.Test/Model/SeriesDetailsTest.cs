@@ -104,7 +104,7 @@ namespace TVDB.Test.Model
 
 			target.Dispose();
 
-			Assert.Equal(string.Empty, target.Language);
+			Assert.Equal(null, target.Language);
 			Assert.Null(target.Actors);
 			Assert.Null(target.Banners);
 			Assert.Null(target.Series);

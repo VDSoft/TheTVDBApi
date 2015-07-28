@@ -202,7 +202,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// The director fo the series.
 		/// </summary>
-		private string director = string.Empty;
+		private string director = null;
 
 		/// <summary>
 		/// The ep image flag.
@@ -217,7 +217,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Names of any guest stars that appeared in this episode.
 		/// </summary>
-		private string guestStars = string.Empty;
+		private string guestStars = null;
 
 		/// <summary>
 		/// The production code of the episode.
@@ -237,7 +237,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Name of the writer of the episode.
 		/// </summary>
-		private string writer = string.Empty;
+		private string writer = null;
 
 		/// <summary>
 		/// Absolute number of the episode.
@@ -247,7 +247,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Path and name of the picture.
 		/// </summary>
-		private string pictureFilename = string.Empty;
+		private string pictureFilename = null;
 
 		/// <summary>
 		/// Id of the last update.
@@ -1180,7 +1180,9 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Combined_season", StringComparison.OrdinalIgnoreCase))
 				{
-					this.CombinedSeason = int.Parse(currentNode.InnerText);
+                    int result = -1;
+                    int.TryParse(currentNode.InnerText, out result);
+                    this.CombinedSeason = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("DVD_chapter", StringComparison.OrdinalIgnoreCase))
@@ -1233,7 +1235,11 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Director", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Director = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Director = currentNode.InnerText; 
+                    }
+
 					continue;
 				}
 				else if (currentNode.Name.Equals("EpImgFlag", StringComparison.OrdinalIgnoreCase))
@@ -1250,7 +1256,10 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("EpisodeName", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Name = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Name = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("EpisodeNumber", StringComparison.OrdinalIgnoreCase))
@@ -1272,7 +1281,10 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("GuestStars", StringComparison.OrdinalIgnoreCase))
 				{
-					this.GuestStars = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.GuestStars = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("IMDB_ID", StringComparison.OrdinalIgnoreCase))
@@ -1287,12 +1299,18 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Language", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Language = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Language = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("Overview", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Overview = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Overview = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("ProductionCode", StringComparison.OrdinalIgnoreCase))
@@ -1329,7 +1347,10 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Writer", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Writer = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Writer = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("absolute_number", StringComparison.OrdinalIgnoreCase))
@@ -1346,7 +1367,10 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("filename", StringComparison.OrdinalIgnoreCase))
 				{
-					this.PictureFilename = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.PictureFilename = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("lastupdated", StringComparison.OrdinalIgnoreCase))

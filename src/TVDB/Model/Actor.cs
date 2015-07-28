@@ -48,17 +48,17 @@ namespace TVDB.Model
         /// <summary>
         /// Path of the actors image.
         /// </summary>
-        private string imagePath = string.Empty;
+        private string imagePath = null;
 
         /// <summary>
         /// Real name of the actor.
         /// </summary>
-        private string name = string.Empty;
+        private string name = null;
 
         /// <summary>
         /// Role the actor is playing.
         /// </summary>
-        private string role = string.Empty;
+        private string role = null;
 
         /// <summary>
         /// Number the actors are sorted.
@@ -261,17 +261,26 @@ namespace TVDB.Model
                 }
                 else if (currentNode.Name.Equals("Image"))
                 {
-                    this.ImagePath = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.ImagePath = currentNode.InnerText; 
+                    }
                     continue;
                 }
                 else if (currentNode.Name.Equals("Name"))
                 {
-                    this.Name = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Name = currentNode.InnerText; 
+                    }
                     continue;
                 }
                 else if (currentNode.Name.Equals("Role"))
                 {
-                    this.Role = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Role = currentNode.InnerText; 
+                    }
                     continue;
                 }
                 else if (currentNode.Name.Equals("SortOrder"))

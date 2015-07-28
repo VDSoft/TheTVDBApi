@@ -134,12 +134,12 @@ namespace TVDB.Model
 		/// <summary>
 		/// Path of the banner for the series.
 		/// </summary>
-		private string bannerPath = string.Empty;
+		private string bannerPath = null;
 
 		/// <summary>
 		/// Zap2It id of the series.
 		/// </summary>
-		private string zap2ItId = string.Empty;
+		private string zap2ItId = null;
 
 		/// <summary>
 		/// Value indicating whether the series has episodes assigend or not.
@@ -159,32 +159,32 @@ namespace TVDB.Model
 		/// <summary>
 		/// All actors of the series.
 		/// </summary>
-		private string actors = string.Empty;
+		private string actors = null;
 
 		/// <summary>
 		/// Day the series is aired.
 		/// </summary>
-		private string airsDayOfWeek = string.Empty;
+		private string airsDayOfWeek = null;
 
 		/// <summary>
 		/// Time the series is aired.
 		/// </summary>
-		private string airsTime = string.Empty;
+		private string airsTime = null;
 
 		/// <summary>
 		/// The content rating of the series.
 		/// </summary>
-		private string contentRating = string.Empty;
+		private string contentRating = null;
 
 		/// <summary>
 		/// The genre of the series.
 		/// </summary>
-		private string genre = string.Empty;
+		private string genre = null;
 
 		/// <summary>
 		/// The network name that aires the series.
 		/// </summary>
-		private string network = string.Empty;
+		private string network = null;
 
 		/// <summary>
 		/// Id of the network.
@@ -224,7 +224,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Path of the fan art.
 		/// </summary>
-		private string fanArt = string.Empty;
+		private string fanArt = null;
 
 		/// <summary>
 		/// Last updated id.
@@ -234,7 +234,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Path of the poster.
 		/// </summary>
-		private string poster = string.Empty;
+		private string poster = null;
 
 		/// <summary>
 		/// Value indicating whether the tms is wanted for the series or not.
@@ -853,22 +853,34 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Language", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Language = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Language = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("SeriesName", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Name = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Name = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("banner", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Banner = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Banner = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("Overview", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Overview = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Overview = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("FirstAired", StringComparison.OrdinalIgnoreCase))
@@ -903,7 +915,10 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Actors", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Actorts = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Actorts = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("Airs_DayOfWeek", StringComparison.OrdinalIgnoreCase))
@@ -928,7 +943,10 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("ContentRating", StringComparison.OrdinalIgnoreCase))
 				{
-					this.ContentRating = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.ContentRating = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("Genre", StringComparison.OrdinalIgnoreCase))
@@ -1017,7 +1035,10 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("fanart", StringComparison.OrdinalIgnoreCase))
 				{
-					this.FanArt = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.FanArt = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("lastupdated", StringComparison.OrdinalIgnoreCase))
@@ -1034,7 +1055,10 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("poster", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Poster = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Poster = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("tms_wanted", StringComparison.OrdinalIgnoreCase))

@@ -53,17 +53,17 @@ namespace TVDB.Model
         /// <summary>
         /// Name of the element.
         /// </summary>
-        private string name = string.Empty;
+        private string name = null;
 
         /// <summary>
         /// Language of the element.
         /// </summary>
-        private string language = string.Empty;
+        private string language = null;
 
         /// <summary>
         /// The overview of the series.
         /// </summary>
-        private string overview = string.Empty;
+        private string overview = null;
 
         /// <summary>
         /// Date the series was first aired.
@@ -73,7 +73,7 @@ namespace TVDB.Model
         /// <summary>
         /// IMDB ID fo the series.
         /// </summary>
-        private string imdbId = string.Empty;
+        private string imdbId = null;
         
         /// <summary>
         /// Occurs when a property changes its value.
@@ -231,6 +231,11 @@ namespace TVDB.Model
         /// <returns>Clean text.</returns>
         protected string PrepareText(string text)
         {
+            if (string.IsNullOrEmpty(text))
+            {
+                return null;
+            }
+
             string result = string.Empty;
 
             if (text.Contains("|"))

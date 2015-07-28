@@ -110,7 +110,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Path of the image.
 		/// </summary>
-		private string bannerPath = string.Empty;
+		private string bannerPath = null;
 
 		/// <summary>
 		/// Type of the banner.
@@ -120,17 +120,17 @@ namespace TVDB.Model
 		/// <summary>
 		/// Dimension of the image.
 		/// </summary>
-		private string dimension = string.Empty;
+		private string dimension = null;
 
 		/// <summary>
 		/// Colors of the banner.
 		/// </summary>
-		private string colors = string.Empty;
+		private string colors = null;
 
 		/// <summary>
 		/// Language of the banner image.
 		/// </summary>
-		private string language = string.Empty;
+		private string language = null;
 
 		/// <summary>
 		/// Rating fo the banner.
@@ -150,12 +150,12 @@ namespace TVDB.Model
 		/// <summary>
 		/// Path to the thumbnail of the image.
 		/// </summary>
-		private string thumbnailPath = string.Empty;
+		private string thumbnailPath = null;
 
 		/// <summary>
 		/// Path to the vignette image.
 		/// </summary>
-		private string vignettePath = string.Empty;
+		private string vignettePath = null;
 
 		/// <summary>
 		/// The season of the banner.
@@ -513,7 +513,10 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("BannerPath", StringComparison.OrdinalIgnoreCase))
 				{
-					this.BannerPath = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.BannerPath = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("BannerType", StringComparison.OrdinalIgnoreCase))
@@ -525,17 +528,26 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("BannerType2", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Dimension = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Dimension = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("Colors", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Color = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Color = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("Language", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Language = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Language = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("Rating", StringComparison.OrdinalIgnoreCase))
@@ -561,12 +573,18 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("ThumbnailPath", StringComparison.OrdinalIgnoreCase))
 				{
-					this.ThumbnailPath = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.ThumbnailPath = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("VignettePath", StringComparison.OrdinalIgnoreCase))
 				{
-					this.VignettePath = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.VignettePath = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("Season", StringComparison.OrdinalIgnoreCase))

@@ -37,7 +37,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// The name of the language.
 		/// </summary>
-		private string name = string.Empty;
+		private string name = null;
 
 		/// <summary>
 		/// The abbreviation of the language.
@@ -185,12 +185,18 @@ namespace TVDB.Model
 			{
 				if (currentNode.Name.Equals("name", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Name = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Name = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("abbreviation", StringComparison.OrdinalIgnoreCase))
 				{
-					this.Abbreviation = currentNode.InnerText;
+                    if (!string.IsNullOrEmpty(currentNode.InnerText))
+                    {
+                        this.Abbreviation = currentNode.InnerText; 
+                    }
 					continue;
 				}
 				else if (currentNode.Name.Equals("id", StringComparison.OrdinalIgnoreCase))
