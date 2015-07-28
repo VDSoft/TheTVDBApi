@@ -105,7 +105,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Id of the banner.
 		/// </summary>
-		private int id = 0;
+		private int id = -1;
 
 		/// <summary>
 		/// Path of the image.
@@ -135,12 +135,12 @@ namespace TVDB.Model
 		/// <summary>
 		/// Rating fo the banner.
 		/// </summary>
-		private double rating = 0.0;
+		private double rating = -1.0;
 
 		/// <summary>
 		/// Number of ratings.
 		/// </summary>
-		private int ratingCount = 0;
+		private int ratingCount = -1;
 
 		/// <summary>
 		/// Series name.
@@ -160,7 +160,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// The season of the banner.
 		/// </summary>
-		private int season = 0;
+		private int season = -1;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Banner"/> class.
@@ -506,7 +506,7 @@ namespace TVDB.Model
 			{
 				if (currentNode.Name.Equals("id", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.Id = result;
 					continue;
@@ -540,14 +540,14 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Rating", StringComparison.OrdinalIgnoreCase))
 				{
-					double result = 0.0;
+					double result = -1.0;
 					double.TryParse(currentNode.InnerText, System.Globalization.NumberStyles.Number, cultureInfo, out result);
 					this.Rating = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("RatingCount", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.RatingCount = result;
 					continue;
@@ -571,7 +571,7 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("Season", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.Season = result;
 					continue;

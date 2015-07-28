@@ -154,7 +154,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Series ID.
 		/// </summary>
-		private int seriesId = 0;
+		private int seriesId = -1;
 
 		/// <summary>
 		/// All actors of the series.
@@ -189,22 +189,22 @@ namespace TVDB.Model
 		/// <summary>
 		/// Id of the network.
 		/// </summary>
-		private int networkId = 0;
+		private int networkId = -1;
 
 		/// <summary>
 		/// Count of rates.
 		/// </summary>
-		private int ratingCount = 0;
+		private int ratingCount = -1;
 
 		/// <summary>
 		/// Rating fo the series.
 		/// </summary>
-		private double rating = 0.0;
+		private double rating = -1.0;
 
 		/// <summary>
 		/// Runtime of the series.
 		/// </summary>
-		private double runtime = 0.0;
+		private double runtime = -1.0;
 
 		/// <summary>
 		/// Status of the series.
@@ -219,7 +219,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Id of the user who added the series.
 		/// </summary>
-		private int addedByUserId = 0;
+		private int addedByUserId = -1;
 
 		/// <summary>
 		/// Path of the fan art.
@@ -229,7 +229,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Last updated id.
 		/// </summary>
-		private long lastUpdated = 0;
+		private long lastUpdated = -1;
 
 		/// <summary>
 		/// Path of the poster.
@@ -834,7 +834,7 @@ namespace TVDB.Model
 			{
 				if (currentNode.Name.Equals("id", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.Id = result;
 					continue;
@@ -846,7 +846,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.SeriesId = result;
 					continue;
@@ -952,7 +952,7 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("NetworkID", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.NetworkId = result;
 					continue;
@@ -964,14 +964,14 @@ namespace TVDB.Model
                         continue;
                     }
 
-					double result = 0.0;
+					double result = -1.0;
 					double.TryParse(currentNode.InnerText, System.Globalization.NumberStyles.Number, cultureInfo, out result);
 					this.Rating = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("RatingCount", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.RatingCount = result;
 					continue;
@@ -983,7 +983,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-					double result = 0.0;
+					double result = -1.0;
 					double.TryParse(currentNode.InnerText, System.Globalization.NumberStyles.Number, cultureInfo, out result);
 					this.Runtime = result;
 					continue;
@@ -1010,7 +1010,7 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("addedBy", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.AddedByUserId = result;
 					continue;
@@ -1027,7 +1027,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-					long result = 0;
+					long result = -1;
 					long.TryParse(currentNode.InnerText, out result);
 					this.LastUpdated = result;
 					continue;
@@ -1039,7 +1039,7 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("tms_wanted", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 
 					this.TMSWanted = result > 0 ? true : false;

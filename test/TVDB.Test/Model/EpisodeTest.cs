@@ -16,7 +16,7 @@ namespace TVDB.Test.Model
             target.Writer = "Josh Schwartz|Chris Fedak";
 
             string expectedGuestStars = "Mieko Hillman, Kristine Blackport, Jim Pirri, Diana Gitelman, Mel Fair, Lynn A. Henderson, Odessa Rae, Jordan Potter, Tasha Campbell, Dale Dye, Matthew Bomer, Bruno Amato, Nicolas Pajon, Wendy Makkena";
-            string expectedWriters = "Josh Schwartz, Chris Fedak***";
+            string expectedWriters = "Josh Schwartz, Chris Fedak";
 
             Type targetType = typeof(Episode);
             var methode = targetType.GetMethod("Initialize", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -96,8 +96,8 @@ namespace TVDB.Test.Model
             Assert.Equal(398671, target.Id);
             Assert.Equal(1.0, target.CombinedEpisodeNumber);
             Assert.Equal(1, target.CombinedSeason);
-            Assert.Equal(0, target.DVDChapter);
-            Assert.Equal(0, target.DVDDiscId);
+            Assert.Equal(-1, target.DVDChapter);
+            Assert.Equal(-1, target.DVDDiscId);
             Assert.Equal(1.0, target.DVDEpisodeNumber);
             Assert.Equal(1, target.DVDSeason);
             Assert.Equal("Rob Bowman", target.Director);

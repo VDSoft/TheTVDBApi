@@ -172,32 +172,32 @@ namespace TVDB.Model
 		/// <summary>
 		/// The combined episde number.
 		/// </summary>
-		private double combinedEpisodeNumber = 0;
+		private double combinedEpisodeNumber = -1;
 
 		/// <summary>
 		/// The combined season number.
 		/// </summary>
-		private int combinedSeason = 0;
+		private int combinedSeason = -1;
 
 		/// <summary>
 		/// Chapter number of the dvd.
 		/// </summary>
-		private int dvdChapter = 0;
+		private int dvdChapter = -1;
 
 		/// <summary>
 		/// Id of the dvd disk.
 		/// </summary>
-		private int dvdDiskId = 0;
+		private int dvdDiskId = -1;
 
 		/// <summary>
 		/// The episode number on the dvd.
 		/// </summary>
-		private double dvdEpisodeNumber = 0;
+		private double dvdEpisodeNumber = -1;
 
 		/// <summary>
 		/// Season number of the dvd.
 		/// </summary>
-		private int dvdSeason = 0;
+		private int dvdSeason = -1;
 
 		/// <summary>
 		/// The director fo the series.
@@ -207,12 +207,12 @@ namespace TVDB.Model
 		/// <summary>
 		/// The ep image flag.
 		/// </summary>
-		private int epImageFlag = 0;
+		private int epImageFlag = -1;
 
 		/// <summary>
 		/// The number of the episode.
 		/// </summary>
-		private int number = 0;
+		private int number = -1;
 
 		/// <summary>
 		/// Names of any guest stars that appeared in this episode.
@@ -222,17 +222,17 @@ namespace TVDB.Model
 		/// <summary>
 		/// The production code of the episode.
 		/// </summary>
-		private int productionCode = 0;
+		private int productionCode = -1;
 
 		/// <summary>
 		/// Rating of the episode.
 		/// </summary>
-		private double rating = 0;
+		private double rating = -1;
 
 		/// <summary>
 		/// Number of the season the episode belongs to.
 		/// </summary>
-		private int seasonNumber = 0;
+		private int seasonNumber = -1;
 
 		/// <summary>
 		/// Name of the writer of the episode.
@@ -242,7 +242,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Absolute number of the episode.
 		/// </summary>
-		private int absoluteNumber = 0;
+		private int absoluteNumber = -1;
 
 		/// <summary>
 		/// Path and name of the picture.
@@ -252,37 +252,37 @@ namespace TVDB.Model
 		/// <summary>
 		/// Id of the last update.
 		/// </summary>
-		private long lastUpdated = 0;
+		private long lastUpdated = -1;
 
 		/// <summary>
 		/// Id of the season.
 		/// </summary>
-		private int seasonId = 0;
+		private int seasonId = -1;
 
 		/// <summary>
 		/// Id of the series.
 		/// </summary>
-		private int seriesId = 0;
+		private int seriesId = -1;
 
 		/// <summary>
 		/// The rating count of the episode.
 		/// </summary>
-		private int ratingCount = 0;
+		private int ratingCount = -1;
 
 		/// <summary>
 		/// Thumbadded id.
 		/// </summary>
-		private int thumbadded = 0;
+		private int thumbadded = -1;
 
 		/// <summary>
 		/// The height of the thumbimage.
 		/// </summary>
-		private int thumbHeight = 0;
+		private int thumbHeight = -1;
 
 		/// <summary>
 		/// Width of the thumb image.
 		/// </summary>
-		private int thumbWidth = 0;
+		private int thumbWidth = -1;
 
 		/// <summary>
 		/// Value inidcating whether the episode is a tms export or not.
@@ -297,7 +297,7 @@ namespace TVDB.Model
 		/// <summary>
 		/// Id of the user who made the tms review.
 		/// </summary>
-		private int tmsReviewById = 0;
+		private int tmsReviewById = -1;
 
 		/// <summary>
 		/// Value indicating whether the tms review is dark or not.
@@ -312,12 +312,12 @@ namespace TVDB.Model
 		/// <summary>
 		/// Id of the tms review logo.
 		/// </summary>
-		private int tmsReviewLogoId = 0;
+		private int tmsReviewLogoId = -1;
 
 		/// <summary>
 		/// Tms review other.
 		/// </summary>
-		private int tmsReviewOther = 0;
+		private int tmsReviewOther = -1;
 
 		/// <summary>
 		/// Value indicating whether the tms review is unsure or not.
@@ -327,17 +327,17 @@ namespace TVDB.Model
         /// <summary>
         /// Airs after season name.
         /// </summary>
-        private string airsAfterSeason = null;
+        private int airsAfterSeason = -1;
 
         /// <summary>
         /// Number of the season this episode airs before.
         /// </summary>
-        private int airsBeforeSeason = 0;
+        private int airsBeforeSeason = -1;
 
         /// <summary>
         /// Number or episode this one airs before.
         /// </summary>
-        private int airsBeforeEpisode = 0;
+        private int airsBeforeEpisode = -1;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Episode"/> class.
@@ -1032,7 +1032,7 @@ namespace TVDB.Model
         /// <summary>
         /// Gets or sets the name of the season this episode airs after.
         /// </summary>
-        public string AirsAfterSeason
+        public int AirsAfterSeason
         {
             get
             {
@@ -1166,14 +1166,14 @@ namespace TVDB.Model
 			{
 				if (currentNode.Name.Equals("id", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.Id = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("Combined_episodenumber", StringComparison.OrdinalIgnoreCase))
 				{
-					double result = 0.0;
+					double result = -1.0;
 					double.TryParse(currentNode.InnerText, System.Globalization.NumberStyles.Number, cultureInfo, out result);
 					this.CombinedEpisodeNumber = result;
 					continue;
@@ -1190,7 +1190,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.DVDChapter = result;
 					continue;
@@ -1202,7 +1202,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.DVDDiscId = result;
 					continue;
@@ -1214,7 +1214,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-					double result = 0;
+					double result = -1;
 					double.TryParse(currentNode.InnerText, System.Globalization.NumberStyles.Number, cultureInfo, out result);
 					this.DVDEpisodeNumber = result;
 					continue;
@@ -1226,7 +1226,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.DVDSeason = result;
 					continue;
@@ -1243,7 +1243,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.EpImageFlag = result;
 					continue;
@@ -1255,7 +1255,7 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("EpisodeNumber", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.Number = result;
 					continue;
@@ -1302,27 +1302,27 @@ namespace TVDB.Model
                         continue;
                     }
 
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.ProductionCode = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("Rating", StringComparison.OrdinalIgnoreCase))
 				{
-					double result = 0.0;
+					double result = -1.0;
 					double.TryParse(currentNode.InnerText, System.Globalization.NumberStyles.Number, cultureInfo, out result);
 					this.Rating = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("RatingCount", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.RatingCount = result;
 				}
 				else if (currentNode.Name.Equals("SeasonNumber", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.SeasonNumber = result;
 					continue;
@@ -1339,7 +1339,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.AbsoluteNumber = result;
 					continue;
@@ -1356,70 +1356,70 @@ namespace TVDB.Model
                         continue;
                     }
 
-					long result = 0;
+					long result = -1;
 					long.TryParse(currentNode.InnerText, out result);
 					this.LastUpdated = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("seasonid", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.SeasonId = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("seriesid", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.SeriesId = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("thumb_added", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.Thumbadded = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("thumb_height", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.ThumbHeight = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("thumb_width", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.ThumbWidth = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("tms_export", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.IsTMSExport = result > 0 ? true : false;
 					continue;
 				}
 				else if (currentNode.Name.Equals("tms_review_blurry", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.IsTMSReviewBlurry = result > 0 ? true : false;
 					continue;
 				}
 				else if (currentNode.Name.Equals("tms_review_by", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.TMSReviewById = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("tms_review_dark", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.IsTMSReviewDark = result > 0 ? true : false;
 					continue;
@@ -1433,21 +1433,21 @@ namespace TVDB.Model
 				}
 				else if (currentNode.Name.Equals("tms_review_logo", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.TMSReviewLogoId = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("tms_review_other", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.TMSReviewOther = result;
 					continue;
 				}
 				else if (currentNode.Name.Equals("tms_review_unsure", StringComparison.OrdinalIgnoreCase))
 				{
-					int result = 0;
+					int result = -1;
 					int.TryParse(currentNode.InnerText, out result);
 					this.IsTMSReviewUnsure = result > 0 ? true : false;
 					continue;
@@ -1459,7 +1459,9 @@ namespace TVDB.Model
                         continue;
                     }
 
-                    this.AirsAfterSeason = currentNode.InnerText;
+                    int result = -1;
+                    int.TryParse(currentNode.InnerText, out result);
+                    this.AirsAfterSeason = result;
                     continue;
                 }
                 else if (currentNode.Name.Equals("airsbefore_season", StringComparison.OrdinalIgnoreCase))
@@ -1469,7 +1471,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-                    int result = 0;
+                    int result = -1;
                     int.TryParse(currentNode.InnerText, out result);
                     this.AirsBeforeSeason = result;
                     continue;
@@ -1481,7 +1483,7 @@ namespace TVDB.Model
                         continue;
                     }
 
-                    int result = 0;
+                    int result = -1;
                     int.TryParse(currentNode.InnerText, out result);
                     this.AirsBeforeEpisode = result;
                     continue;
