@@ -12,5 +12,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("Christoph van der Fecht - VDsoft")]
 [assembly: AssemblyCopyright("Copyright © Christoph van der Fecht - VDsoft 2015")]
 
-[assembly: AssemblyVersion("1.1.1.0")]
-[assembly: AssemblyFileVersion("1.1.1.0")]
+[assembly: AssemblyVersion("1.2.0.0")]
+[assembly: AssemblyFileVersion("1.2.0.0")]
