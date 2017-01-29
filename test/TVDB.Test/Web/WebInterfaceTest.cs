@@ -100,6 +100,28 @@ namespace TVDB.Test.Web
 			Assert.Equal(80348, firstElement.Id);
 		}
 
+        [Fact]
+        public void GetSeriesByNameWithEncodedNameSucessful()
+        {
+            WebInterface target = new WebInterface(apiKey);
+            string name = "Mike & Molly";
+            Task<List<Series>> taskResult = target.GetSeriesByName(name, this.testMirror);
+
+            List<Series> result = taskResult.Result;
+
+            Assert.True(result.Count > 0);
+            Assert.True(result.Any(x => x.Name == name));
+
+            ////Assert.Equal("en", firstElement.Language);
+            ////Assert.Equal("Chuck", firstElement.Name);
+            ////Assert.Equal("graphical/80348-g26.jpg", firstElement.Banner);
+            ////Assert.Equal(new DateTime(2007, 09, 24), firstElement.FirstAired);
+            ////Assert.Equal("NBC", firstElement.Network);
+            ////Assert.Equal("tt0934814", firstElement.IMDBId);
+            ////Assert.Equal("EP00930779", firstElement.Zap2ItId);
+            ////Assert.Equal(80348, firstElement.Id);
+        }
+
 		[Fact]
 		public void GetSeriesByNameTestSuccessfullWithNameAndLanguage()
 		{

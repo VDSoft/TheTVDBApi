@@ -6,20 +6,20 @@
 
 namespace TVDB.Web
 {
-	using Model;
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.IO.Compression;
-	using System.Linq;
-	using System.Net;
-	using System.Threading.Tasks;
-	using System.Xml;
-	
-	/// <summary>
-	/// Communication with the XML interface of the TVDB.
-	/// </summary>
-	public class WebInterface : TVDB.Web.ITvDb
+    using Model;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.IO.Compression;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Xml;
+
+    /// <summary>
+    /// Communication with the XML interface of the TVDB.
+    /// </summary>
+    public class WebInterface : TVDB.Web.ITvDb
 	{
 		/// <summary>
 		/// Api key for the application.
@@ -107,13 +107,13 @@ namespace TVDB.Web
 		/// </example>
 		public async Task<List<Mirror>> GetMirrors()
 		{
-			string url = "http://thetvdb.com/api/{0}/mirrors.xml";
+			Uri url = new Uri($"http://thetvdb.com/api/{this.APIKey}/mirrors.xml");
 
 			byte[] result = null;
 
 			try
 			{
-				 result = await this.client.DownloadDataTaskAsync(string.Format(url, this.APIKey)).ConfigureAwait(continueOnCapturedContext : false);
+				 result = await this.client.DownloadDataTaskAsync(url).ConfigureAwait(continueOnCapturedContext : false);
 			}
 			catch (Exception ex)
 			{
@@ -224,9 +224,9 @@ namespace TVDB.Web
 				return null;
 			}
 
-			string url = "{0}/api/{1}/languages.xml";
+            Uri url = new Uri($"{mirror.Address}/api/{this.APIKey}/languages.xml");
 
-            byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, APIKey)).ConfigureAwait(continueOnCapturedContext: false);
+            byte[] result = await this.client.DownloadDataTaskAsync(url).ConfigureAwait(continueOnCapturedContext: false);
 			MemoryStream resultStream = new MemoryStream(result);
 
 			XmlDocument doc = new XmlDocument();
@@ -342,10 +342,10 @@ namespace TVDB.Web
 				return null;
 			}
 
-			string url = "{0}/api/GetSeries.php?seriesname={1}&language={2}";
+            Uri url = new Uri($"{mirror.Address}/api/GetSeries.php?seriesname={Uri.EscapeUriString(name)}&language={languageAbbreviation}");
 
-            byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, name, languageAbbreviation)).ConfigureAwait(continueOnCapturedContext: false);
-			MemoryStream resultStream = new MemoryStream(result);
+            byte[] result = await this.client.DownloadDataTaskAsync(url).ConfigureAwait(continueOnCapturedContext: false);
+            MemoryStream resultStream = new MemoryStream(result);
 
 			XmlDocument doc = new XmlDocument();
 			doc.Load(resultStream);
@@ -475,9 +475,9 @@ namespace TVDB.Web
 				return null;
 			}
 
-			string url = "{0}/api/GetSeriesByRemoteID.php?imdbid={1}&language={2}&zap2it={3}";
+            Uri url = new Uri($"{mirror.Address}/api/GetSeriesByRemoteID.php?imdbid={imdbId}&language={languageAbbreviation}&zap2it={zap2Id}");
 
-            byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, imdbId, languageAbbreviation, zap2Id)).ConfigureAwait(continueOnCapturedContext: false);
+            byte[] result = await this.client.DownloadDataTaskAsync(url).ConfigureAwait(continueOnCapturedContext: false);
 			MemoryStream resultStream = new MemoryStream(result);
 
 			XmlDocument doc = new XmlDocument();
@@ -591,8 +591,9 @@ namespace TVDB.Web
 				return null;
 			}
 
-			string url = "{0}/api/{1}/series/{2}/all/{3}.zip";
-            byte[] result = await this.client.DownloadDataTaskAsync(string.Format(url, mirror.Address, this.APIKey, id, languageAbbreviation)).ConfigureAwait(continueOnCapturedContext: false);
+            Uri url = new Uri($"{mirror.Address}/api/{this.APIKey}/series/{id}/all/{languageAbbreviation}.zip");
+
+            byte[] result = await this.client.DownloadDataTaskAsync(url).ConfigureAwait(continueOnCapturedContext: false);
 
 			// store the zip file.
 			using (FileStream zipFile = new FileStream(this.loadedSeriesPath, FileMode.Create, FileAccess.Write))
