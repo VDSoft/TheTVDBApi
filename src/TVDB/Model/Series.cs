@@ -890,7 +890,10 @@ namespace TVDB.Model
                         continue;
                     }
 
-					this.FirstAired = DateTime.Parse(currentNode.InnerText);
+				    DateTime firstAired;
+				    if (DateTime.TryParse(currentNode.InnerText, out firstAired))
+				        this.FirstAired = firstAired;
+				    
 					continue;
 				}
 				else if (currentNode.Name.Equals("IMDB_ID", StringComparison.OrdinalIgnoreCase))
@@ -1023,7 +1026,10 @@ namespace TVDB.Model
 						continue;
 					}
 
-					this.AddedDate = DateTime.Parse(currentNode.InnerText);
+				    DateTime addedDate;
+                    if (DateTime.TryParse(currentNode.InnerText, out addedDate))
+				        this.AddedDate = addedDate;
+
 					continue;
 				}
 				else if (currentNode.Name.Equals("addedBy", StringComparison.OrdinalIgnoreCase))

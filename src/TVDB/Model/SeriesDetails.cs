@@ -231,7 +231,7 @@ namespace TVDB.Model
 			}
 
 			this.Actors = new List<Actor>();
-			XmlNode actorsNode = this.actorsDoc.ChildNodes[1];
+			XmlNode actorsNode = this.actorsDoc.ChildNodes[this.actorsDoc.ChildNodes.Count - 1];
 
 			foreach (XmlNode currentNode in actorsNode)
 			{
@@ -256,7 +256,7 @@ namespace TVDB.Model
 			}
 
 			this.Banners = new List<Banner>();
-			XmlNode bannersNode = this.bannersDoc.ChildNodes[1];
+            XmlNode bannersNode = this.bannersDoc.ChildNodes[this.bannersDoc.ChildNodes.Count - 1];
 
 			foreach (XmlNode currentNode in bannersNode.ChildNodes)
 			{
@@ -286,7 +286,7 @@ namespace TVDB.Model
 				this.Series.ActorCollection = new System.Collections.ObjectModel.ObservableCollection<Actor>(this.Actors);
 			}
 
-			XmlNode dataNode = this.languageDoc.ChildNodes[1];
+            XmlNode dataNode = this.languageDoc.ChildNodes[this.languageDoc.ChildNodes.Count - 1];
 
 			foreach (XmlNode currentNode in dataNode.ChildNodes)
 			{
